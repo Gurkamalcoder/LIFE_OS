@@ -1,0 +1,32 @@
+[
+    {
+        "name": "110 Push-ups",
+        "xp": 330,
+        "target_stat": "Strength",
+        "status": "Incomplete"
+    },
+    {
+        "name": "110 Sit-ups",
+        "xp": 330,
+        "target_stat": "Strength",
+        "status": "Incomplete"
+    },
+    {
+        "name": "110 Squats",
+        "xp": 330,
+        "target_stat": "Strength",
+        "status": "Incomplete"
+    },
+    {
+        "name": "110 Pull-ups",
+        "xp": 330,
+        "target_stat": "Strength",
+        "status": "Incomplete"
+    },
+    {
+        "name": "60 min Meditation",
+        "xp": 180,
+        "target_stat": "Willpower",
+        "status": "Incomplete"
+    }
+]

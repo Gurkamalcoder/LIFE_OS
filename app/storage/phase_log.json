@@ -1,0 +1,93 @@
+[
+    {
+        "type": "wakeup",
+        "date": "2026-05-17",
+        "day": 1,
+        "wakeup_time": "07:30",
+        "xp": 0,
+        "stat": "",
+        "name": "Wakeup at 07:30",
+        "time": "2026-05-17T09:27:30.952136"
+    },
+    {
+        "type": "pillar",
+        "date": "2026-05-17",
+        "day": 1,
+        "name": "Meditation",
+        "amount": 60,
+        "unit": "min",
+        "stat": "Willpower",
+        "xp": 180,
+        "time": "2026-05-17T21:50:46.945856",
+        "book": ""
+    },
+    {
+        "type": "wakeup",
+        "date": "2026-05-18",
+        "day": 2,
+        "wakeup_time": "07:04",
+        "xp": 0,
+        "stat": "",
+        "name": "Wakeup at 07:04",
+        "time": "2026-05-18T07:12:30.323661"
+    },
+    {
+        "type": "wakeup",
+        "date": "2026-05-19",
+        "day": 3,
+        "wakeup_time": "04:00",
+        "xp": 60,
+        "stat": "Willpower",
+        "name": "Wakeup at 04:00",
+        "time": "2026-05-19T04:40:41.954836"
+    },
+    {
+        "type": "pillar",
+        "date": "2026-05-19",
+        "day": 3,
+        "name": "Meditation",
+        "amount": 30,
+        "unit": "min",
+        "stat": "Willpower",
+        "xp": 90,
+        "time": "2026-05-19T22:40:39.939533",
+        "book": ""
+    },
+    {
+        "type": "custom",
+        "date": "2026-05-19",
+        "day": 3,
+        "name": "Volleyball",
+        "stat": "Skills",
+        "xp": 400,
+        "time": "2026-05-19T22:40:52.735803"
+    },
+    {
+        "type": "custom",
+        "date": "2026-05-19",
+        "day": 3,
+        "name": "Maths 4 problems solved",
+        "stat": "Intelligence",
+        "xp": 40,
+        "time": "2026-05-19T22:41:10.736868"
+    },
+    {
+        "type": "wakeup",
+        "date": "2026-05-20",
+        "day": 4,
+        "wakeup_time": "08:30",
+        "xp": 0,
+        "stat": "",
+        "name": "Wakeup at 08:30",
+        "time": "2026-05-20T10:35:42.203544"
+    },
+    {
+        "type": "custom",
+        "date": "2026-05-20",
+        "day": 4,
+        "name": "typing practise(new PB)",
+        "stat": "Skills",
+        "xp": 180,
+        "time": "2026-05-20T10:36:19.213245"
+    }
+]

@@ -1,0 +1,109 @@
+[
+    {
+        "date": "2026-05-17",
+        "day": 1,
+        "phase": 1,
+        "start_time": "2026-05-17T09:27:23.677477",
+        "end_time": "2026-05-17T21:50:57.671588",
+        "passed": false,
+        "player_before": {
+            "name": "Ryuji",
+            "level": 1,
+            "xp": 0,
+            "xp_required": 100,
+            "rank": "E"
+        },
+        "dopamine_intact": true,
+        "streak_after": 0,
+        "best_streak": 0,
+        "wakeup_time": "07:30",
+        "wakeup_xp": 0,
+        "player_after": {
+            "name": "Ryuji",
+            "level": 5,
+            "xp": 20,
+            "xp_required": 300,
+            "rank": "E"
+        },
+        "sleep_prev": "",
+        "sleep_tonight": "22:00"
+    },
+    {
+        "date": "2026-05-18",
+        "day": 2,
+        "phase": 1,
+        "start_time": "2026-05-18T07:12:23.188328",
+        "end_time": "2026-05-18T22:26:30.573839",
+        "passed": false,
+        "player_before": {
+            "name": "Ryuji",
+            "level": 5,
+            "xp": 20,
+            "xp_required": 300,
+            "rank": "E"
+        },
+        "dopamine_intact": false,
+        "streak_after": 0,
+        "best_streak": 0,
+        "wakeup_time": "07:04",
+        "wakeup_xp": 0,
+        "player_after": {
+            "name": "Ryuji",
+            "level": 5,
+            "xp": 20,
+            "xp_required": 300,
+            "rank": "E"
+        },
+        "sleep_prev": "22:00-7:04",
+        "sleep_tonight": "22:30"
+    },
+    {
+        "date": "2026-05-19",
+        "day": 3,
+        "phase": 1,
+        "start_time": "2026-05-19T04:40:24.945722",
+        "end_time": "2026-05-19T22:41:46.081082",
+        "passed": false,
+        "player_before": {
+            "name": "Ryuji",
+            "level": 6,
+            "xp": 50,
+            "xp_required": 350,
+            "rank": "E"
+        },
+        "dopamine_intact": true,
+        "streak_after": 0,
+        "best_streak": 0,
+        "wakeup_time": "04:00",
+        "wakeup_xp": 60,
+        "player_after": {
+            "name": "Ryuji",
+            "level": 8,
+            "xp": 160,
+            "xp_required": 450,
+            "rank": "E"
+        },
+        "sleep_prev": "22:30-4:00",
+        "sleep_tonight": "22:5p"
+    },
+    {
+        "date": "2026-05-20",
+        "day": 4,
+        "phase": 1,
+        "start_time": "2026-05-20T10:35:14.327315",
+        "end_time": null,
+        "passed": null,
+        "player_before": {
+            "name": "Ryuji",
+            "level": 8,
+            "xp": 160,
+            "xp_required": 450,
+            "rank": "E"
+        },
+        "dopamine_intact": true,
+        "streak_after": 0,
+        "best_streak": 0,
+        "wakeup_time": "08:30",
+        "wakeup_xp": 0
+    }
+]

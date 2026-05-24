@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
+# VS Code settings
+.vscode/
+
+
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Archives
+*.zip
+
+# MacOS
+.DS_Store
+
+# Test / coverage
+.pytest_cache/
+.coverage
+
+# Misc
+*.log

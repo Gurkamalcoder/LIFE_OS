@@ -1,0 +1,27 @@
+{
+    "Strength": {
+        "Level": 3,
+        "XP": 80,
+        "xp-required": 200
+    },
+    "Vitality": {
+        "Level": 1,
+        "XP": 0,
+        "xp-required": 100
+    },
+    "Intelligence": {
+        "Level": 5,
+        "XP": 150,
+        "xp-required": 300
+    },
+    "Willpower": {
+        "Level": 7,
+        "XP": 60,
+        "xp-required": 400
+    },
+    "Skills": {
+        "Level": 5,
+        "XP": 150,
+        "xp-required": 300
+    }
+}
