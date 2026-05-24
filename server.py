@@ -210,7 +210,7 @@ def get_streaks() -> tuple[int, int]:
 # ══════════════════════════════════════════════════════════════════════════
 @app.route("/")
 def index():
-    return send_from_directory(BASE, "LIFE-tracker.html")
+    return send_from_directory(BASE, "Dashboard.html")
 
 # ══════════════════════════════════════════════════════════════════════════
 #  STATUS
