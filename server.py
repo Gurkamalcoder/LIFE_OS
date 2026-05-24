@@ -901,7 +901,7 @@ def api_skips():
 # ══════════════════════════════════════════════════════════════════════════
 if __name__ == "__main__":
     print("\n  ╔══════════════════════════════════╗")
-    print("  ║   LIFE OS — Server Starting      ║")
+    print("  ║   LIFE OS — Server Starting       ║")
     print("  ╚══════════════════════════════════╝")
     print(f"\n  Open Chrome → http://localhost:8080\n")
     app.run(host="0.0.0.0", port=8080, debug=False)
