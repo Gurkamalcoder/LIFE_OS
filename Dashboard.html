@@ -152,10 +152,17 @@ body{
 
 .modal-overlay{position:fixed;inset:0;z-index:800;background:rgba(10,10,10,0.85);display:none;align-items:flex-end;justify-content:center;padding-bottom:20px;}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--bg2);border:1px solid var(--border2);max-width:500px;width:90%;max-height:85vh;overflow-y:auto;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
+.modal{background:var(--bg2);border:1px solid var(--border2);max-width:480px;width:90%;max-height:80vh;overflow-y:auto;padding:0;box-shadow:0 20px 60px rgba(0,0,0,0.8);}
+.modal-hdr{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);}
+.modal-title{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;}
+.modal-close{font-size:16px;color:var(--muted);cursor:pointer;line-height:1;}
+.modal-body{padding:16px;}
+.modal-ftr{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end;}
 .form-label{font-size:9px;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;display:block;margin-bottom:6px;}
-.form-group{margin-bottom:12px;}
+.form-group{margin-bottom:14px;}
 @keyframes xpAnim{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.05)}70%{opacity:1;transform:translate(-50%,-62%) scale(1)}100%{opacity:0;transform:translate(-50%,-80%) scale(.9)}}
+@keyframes modalIn{0%{opacity:0;transform:translateY(20px)}100%{opacity:1;transform:translateY(0)}}
+.modal-overlay.open .modal{animation:modalIn .2s ease;}
 .toast{position:fixed;bottom:30px;left:50%;z-index:500;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--card);border:1px solid var(--amber2);color:var(--amber);padding:10px 18px;font-size:10px;letter-spacing:0.1em;transition:all 0.3s;white-space:nowrap;max-width:90vw;overflow:hidden;text-overflow:ellipsis;}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 </style>
@@ -172,7 +179,7 @@ body{
   </div>
   <div style="display:flex;align-items:center;gap:10px;">
     <span class="day-badge" id="dayBadge">Day 1 / 720</span>
-    <button class="btn-g" onclick="openSettingsDialog()" style="padding:3px 8px;font-size:10px;" title="Settings">⚙</button>
+    <span onclick="openSettingsDialog()" style="font-size:11px;color:var(--muted);cursor:pointer;letter-spacing:2px;" title="Settings">⚙</span>
   </div>
 </div>
 
@@ -336,177 +343,146 @@ body{
 </div>
 </div>
 
-<!-- ══ SESSIONS MODALS ══ -->
+<!-- ══ MODALS ══ -->
 <div class="modal-overlay" id="modalStartSession">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">New Session</div>
-      <div onclick="closeModal('modalStartSession')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
-    </div>
-    <div class="inp-row" style="margin-bottom:12px;">
-      <div style="flex:1;">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">New Session</div><div class="modal-close" onclick="closeModal('modalStartSession')">✕</div></div>
+    <div class="modal-body">
+      <div class="form-group">
         <label class="form-label">Slot</label>
-        <select id="sessionSlot" class="inp">
-          <option>Morning</option><option>Afternoon</option><option>Night</option>
+        <select id="sessionSlot" class="inp"><option>Morning</option><option>Afternoon</option><option>Night</option></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Task</label>
+        <input type="text" id="sessionTask" class="inp" placeholder="What are you working on?">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type → Stat</label>
+        <select id="sessionTaskType" class="inp">
+          <option value="Study">Study → Intelligence</option>
+          <option value="Coding">Coding → Skills</option>
+          <option value="Research">Research → Intelligence</option>
+          <option value="Reading">Reading → Intelligence</option>
+          <option value="Presentation">Presentation → Skills</option>
         </select>
       </div>
+      <div style="font-size:8px;color:var(--muted);letter-spacing:0.08em;">XP = mins × 3 → Willpower + selected stat</div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Task Description</label>
-      <input type="text" id="sessionTask" class="inp" placeholder="What are you working on?">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Task Type → Stat</label>
-      <select id="sessionTaskType" class="inp">
-        <option value="Study">Study → Intelligence</option>
-        <option value="Coding">Coding → Skills</option>
-        <option value="Research">Research → Intelligence</option>
-        <option value="Reading">Reading → Intelligence</option>
-        <option value="Presentation">Presentation → Skills</option>
-      </select>
-    </div>
-    <div style="font-size:9px;color:var(--muted);margin-bottom:16px;letter-spacing:0.06em;">
-      ⚡ XP = minutes × 3 → Willpower + selected stat
-    </div>
-    <button class="btn-p" onclick="startSession()" style="width:100%;">▶ START SESSION</button>
+    <div class="modal-ftr"><button class="btn-g" onclick="closeModal('modalStartSession')">Cancel</button><button class="btn-p" onclick="startSession()">▶ Start</button></div>
   </div>
 </div>
 
-<!-- Stop Session -->
 <div class="modal-overlay" id="modalStopSession">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">End Session</div>
-      <div onclick="closeModal('modalStopSession')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">End Session</div><div class="modal-close" onclick="closeModal('modalStopSession')">✕</div></div>
+    <div class="modal-body">
+      <div id="stopSessionInfo" style="font-size:9px;color:var(--txt2);line-height:1.6;margin-bottom:12px;padding:8px;background:var(--bg);border-left:2px solid var(--amber);"></div>
+      <div class="form-group">
+        <label class="form-label">Duration Override (min)</label>
+        <input type="number" id="sessionManualDuration" class="inp" placeholder="Leave blank for auto">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Output</label>
+        <textarea id="sessionOutput" class="inp" style="min-height:60px;" placeholder="What did you produce?"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Key Wins</label>
+        <input type="text" id="sessionKeyWins" class="inp" placeholder="Breakthroughs">
+      </div>
     </div>
-    <div id="stopSessionInfo" style="font-size:10px;color:var(--muted);margin-bottom:14px;line-height:1.6;"></div>
-    <div class="form-group">
-      <label class="form-label">Duration Override (minutes)</label>
-      <input type="number" id="sessionManualDuration" class="inp" placeholder="Leave blank to use timer">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Output / What you produced</label>
-      <textarea id="sessionOutput" class="inp" style="min-height:80px;"></textarea>
-    </div>
-    <div class="form-group">
-      <label class="form-label">Key Wins</label>
-      <input type="text" id="sessionKeyWins" class="inp" placeholder="Breakthroughs or wins">
-    </div>
-    <button class="btn-p" onclick="stopSession()" style="width:100%;margin-bottom:8px;">⊕ SAVE SESSION</button>
-    <button class="btn-g" onclick="cancelSession()" style="width:100%;color:var(--danger-lit);">✕ CANCEL SESSION</button>
+    <div class="modal-ftr"><button class="btn-g" style="color:var(--danger-lit);" onclick="cancelSession()">Cancel Session</button><button class="btn-p" onclick="stopSession()">⊕ Save</button></div>
   </div>
 </div>
 
-<!-- Pillar Log Modal -->
 <div class="modal-overlay" id="modalPillar">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div id="pillarModalTitle" style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">Log Pillar</div>
-      <div onclick="closeModal('modalPillar')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title" id="pillarModalTitle">Log Pillar</div><div class="modal-close" onclick="closeModal('modalPillar')">✕</div></div>
+    <div class="modal-body">
+      <div id="pillarModalInfo" style="font-size:8px;color:var(--muted);margin-bottom:10px;letter-spacing:0.08em;"></div>
+      <div class="form-group">
+        <label class="form-label" id="pillarAmountLabel">Reps</label>
+        <input type="number" id="pillarAmount" class="inp" placeholder="0" inputmode="numeric">
+      </div>
+      <div class="form-group" id="pillarBookGroup" style="display:none;">
+        <label class="form-label">Book</label>
+        <input type="text" id="pillarBook" class="inp" placeholder="e.g. Atomic Habits">
+      </div>
+      <div style="font-size:8px;color:var(--muted);letter-spacing:0.08em;" id="pillarXpPreview"></div>
     </div>
-    <div id="pillarModalInfo" style="font-size:9px;color:var(--muted);margin-bottom:14px;letter-spacing:0.06em;"></div>
-    <div class="form-group">
-      <label class="form-label" id="pillarAmountLabel">Reps</label>
-      <input type="number" id="pillarAmount" class="inp" placeholder="0" inputmode="numeric">
-    </div>
-    <div class="form-group" id="pillarBookGroup" style="display:none;">
-      <label class="form-label">Book / Topic (optional)</label>
-      <input type="text" id="pillarBook" class="inp" placeholder="e.g. Atomic Habits">
-    </div>
-    <div style="font-size:9px;color:var(--muted);margin-bottom:16px;letter-spacing:0.06em;" id="pillarXpPreview"></div>
-    <button class="btn-p" onclick="submitPillar()" style="width:100%;">⊕ LOG</button>
+    <div class="modal-ftr"><button class="btn-g" onclick="closeModal('modalPillar')">Cancel</button><button class="btn-p" onclick="submitPillar()">⊕ Log</button></div>
   </div>
 </div>
 
-<!-- End Day Modal -->
 <div class="modal-overlay" id="modalEndDay">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--danger-lit);font-weight:700;">End Day</div>
-      <div onclick="closeModal('modalEndDay')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title" style="color:var(--danger-lit);">Close Day</div><div class="modal-close" onclick="closeModal('modalEndDay')">✕</div></div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Last Night's Sleep</label>
+        <input type="text" id="edSleepPrev" class="inp" placeholder="22:00 → 05:30">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Planned Sleep Tonight</label>
+        <input type="text" id="edSleepTonight" class="inp" placeholder="22:00 →">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Dopamine Detox</label>
+        <select id="edDopamine" class="inp"><option value="true">✅ Intact</option><option value="false">❌ Slipped</option></select>
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Last Night's Sleep</label>
-      <input type="text" id="edSleepPrev" class="inp" placeholder="e.g. 22:00 → 05:30">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Tonight's Planned Sleep</label>
-      <input type="text" id="edSleepTonight" class="inp" placeholder="e.g. 22:00 →">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Dopamine Detox Intact?</label>
-      <select id="edDopamine" class="inp"><option value="true">✅ Yes — Intact</option><option value="false">❌ No — Slipped</option></select>
-    </div>
-    <button class="btn-p" onclick="confirmEndDay()" style="width:100%;background:var(--danger-lit);border-color:var(--danger-lit);">⛔ CLOSE DAY</button>
+    <div class="modal-ftr"><button class="btn-g" onclick="closeModal('modalEndDay')">Cancel</button><button class="btn-p" style="background:var(--danger-lit);border-color:var(--danger-lit);" onclick="confirmEndDay()">⛔ Close Day</button></div>
   </div>
 </div>
 
-<!-- Summary Modal -->
 <div class="modal-overlay" id="modalSummary">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">Day Summary</div>
-      <div onclick="closeModal('modalSummary')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">Day Summary</div><div class="modal-close" onclick="closeModal('modalSummary')">✕</div></div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Wakeup Time</label>
+        <input type="time" id="summaryWakeup" class="inp">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Last Night's Sleep</label>
+        <input type="text" id="summarySleepPrev" class="inp" placeholder="22:00 → 05:30">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tonight's Sleep</label>
+        <input type="text" id="summarySleepTonight" class="inp" placeholder="22:00 →">
+      </div>
     </div>
-    <div class="form-group">
-      <label class="form-label">Wakeup Time</label>
-      <input type="time" id="summaryWakeup" class="inp">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Last Night's Sleep</label>
-      <input type="text" id="summarySleepPrev" class="inp" placeholder="e.g. 22:00 → 05:30">
-    </div>
-    <div class="form-group">
-      <label class="form-label">Tonight's Sleep</label>
-      <input type="text" id="summarySleepTonight" class="inp" placeholder="e.g. 22:00 →">
-    </div>
-    <button class="btn-p" onclick="generateSummary()" style="width:100%;">📋 GENERATE SUMMARY</button>
+    <div class="modal-ftr"><button class="btn-g" onclick="closeModal('modalSummary')">Cancel</button><button class="btn-p" onclick="generateSummary()">Generate</button></div>
   </div>
 </div>
 
-<!-- Settings Modal -->
 <div class="modal-overlay" id="modalSettings">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:600px;max-height:90vh;padding:20px;overflow-y:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">Settings</div>
-      <div onclick="closeModal('modalSettings')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
-    </div>
-    
-    <div style="margin-bottom:20px;">
-      <div style="font-size:10px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;">Player</div>
-      <div class="form-group">
-        <label class="form-label">Player Name</label>
-        <input type="text" id="settingName" class="inp" placeholder="Ryuji">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-hdr"><div class="modal-title">Settings</div><div class="modal-close" onclick="closeModal('modalSettings')">✕</div></div>
+    <div class="modal-body">
+      <div style="border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:12px;">
+        <div style="font-size:8px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">Player</div>
+        <div class="inp-row" style="margin-bottom:0;"><input type="text" id="settingName" class="inp" placeholder="Name"><button class="btn-p" onclick="saveName()">Save</button></div>
       </div>
-      <button class="btn-p" onclick="saveName()" style="width:100%;font-size:9px;">SAVE NAME</button>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div style="font-size:10px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;">Arc</div>
-      <div class="form-group">
-        <label class="form-label">Arc Start Date</label>
-        <input type="date" id="settingArcStart" class="inp">
+      <div style="border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:12px;">
+        <div style="font-size:8px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px;">Arc Start</div>
+        <div class="inp-row" style="margin-bottom:0;"><input type="date" id="settingArcStart" class="inp"><button class="btn-p" onclick="saveArcStart()">Save</button></div>
       </div>
-      <button class="btn-p" onclick="saveArcStart()" style="width:100%;font-size:9px;">SAVE ARC START</button>
-    </div>
-
-    <div style="margin-bottom:20px;">
-      <div style="font-size:10px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px;">Danger Zone</div>
-      <div style="font-size:9px;color:var(--danger-lit);background:rgba(139,32,32,0.1);border:1px solid var(--danger);padding:12px;margin-bottom:10px;letter-spacing:0.06em;">⚠ Full System Reset will wipe everything permanently.</div>
-      <button class="btn-g" onclick="doReset('all')" style="width:100%;border-color:var(--danger);color:var(--danger-lit);">FULL RESET</button>
+      <div>
+        <div style="font-size:8px;color:var(--danger-lit);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px;">Danger</div>
+        <div style="font-size:8px;color:var(--muted);margin-bottom:8px;background:rgba(139,32,32,0.08);padding:6px 8px;border-left:2px solid var(--danger);">Full reset wipes everything permanently.</div>
+        <button class="btn-g" onclick="doReset('all')" style="border-color:var(--danger);color:var(--danger-lit);font-size:8px;">Full Reset</button>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Quests Modal -->
 <div class="modal-overlay" id="modalQuests">
-  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">Daily Quests</div>
-      <div onclick="closeModal('modalQuests')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">Quests</div><div class="modal-close" onclick="closeModal('modalQuests')">✕</div></div>
+    <div class="modal-body">
+      <div id="questList"></div>
+      <div style="font-size:8px;color:var(--muted);letter-spacing:0.08em;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">Click a quest to toggle. Completed = XP awarded.</div>
     </div>
-    <div id="questList" style="margin-bottom:14px;"></div>
-    <div style="font-size:9px;color:var(--muted);letter-spacing:0.06em;">Click a quest to toggle completion. Completed quests award XP to their stat.</div>
   </div>
 </div>
 
@@ -663,7 +639,7 @@ function openPillarModal(p){
   if(typeof p==='string'){
     activePillar={name:p,base:100};
   }
-  document.getElementById('pillarModalTitle').innerHTML=`${activePillar.name.toUpperCase()} <span style="cursor:pointer;" onclick="closeModal('modalPillar')">✕</span>`;
+  document.getElementById('pillarModalTitle').textContent=activePillar.name.toUpperCase();
   const entries=S.pillars_today.filter(e=>e.name===activePillar.name);
   const amount=entries.reduce((a,b)=>a+(b.amount||0),0);
   document.getElementById('pillarModalInfo').textContent=`Logged today: ${amount} · +${amount*3} XP`;

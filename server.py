@@ -32,7 +32,7 @@ from app.core.stats import (
     from_file as stats_from_file,
 )
 from app.core.quests import (
-    Quests, load_saved_quests, save_all_quests, scale_quests,
+    Quests, Quest, load_saved_quests, save_all_quests, scale_quests,
 )
 from app.core.player import Player
 
@@ -210,7 +210,7 @@ def get_streaks() -> tuple[int, int]:
 # ══════════════════════════════════════════════════════════════════════════
 @app.route("/")
 def index():
-    return send_from_directory(BASE, "Dashboard.html")
+    return send_from_directory(BASE, "LIFE-tracker.html")
 
 # ══════════════════════════════════════════════════════════════════════════
 #  STATUS
@@ -579,14 +579,54 @@ def api_quest_toggle():
         quest.status = "Incomplete"
     else:
         quest.status = "Complete"
-        stats[quest.target_stat].add_xp(quest.xp)   # ← app.core.stats.Stat.add_xp
+        stats[quest.target_stat].add_xp(quest.xp)
         save_stats(stats)
-        player.xp_reward(quest.xp)                   # ← app.core.player.Player.xp_reward
+        player.xp_reward(quest.xp)
         save_player(player)
 
-    save_all_quests()                                 # ← app.core.quests.save_all_quests
+    save_all_quests()
     return jsonify({"ok": True, "quests": quests_json(quests),
                     "player": player_dict(player), "stats": stats_json(stats)})
+
+@app.route("/api/quest/add", methods=["POST"])
+def api_quest_add():
+    data   = request.json or {}
+    name   = data.get("name", "New Quest")
+    xp     = data.get("xp", 100)
+    stat   = data.get("stat", "Willpower")
+    quests = load_quests()
+    keys   = list(quests.keys())
+    new_key = f"quest_{len(keys)+1}"
+    quest = Quest(new_key, name, xp, stat)
+    Quests[new_key] = quest
+    save_all_quests()
+    return jsonify({"ok": True, "quests": quests_json(load_quests())})
+
+@app.route("/api/quest/update", methods=["POST"])
+def api_quest_update():
+    data   = request.json or {}
+    idx    = data.get("index", 0)
+    quests = load_quests()
+    keys   = list(quests.keys())
+    if idx >= len(keys):
+        return jsonify({"ok": False, "msg": "Index out of range"})
+    q = quests[keys[idx]]
+    if "name" in data: q.name = data["name"]
+    if "xp" in data:   q.xp   = int(data["xp"])
+    if "stat" in data: q.target_stat = data["stat"]
+    save_all_quests()
+    return jsonify({"ok": True, "quests": quests_json(load_quests())})
+
+@app.route("/api/quest/delete", methods=["POST"])
+def api_quest_delete():
+    idx    = (request.json or {}).get("index", 0)
+    quests = load_quests()
+    keys   = list(quests.keys())
+    if idx >= len(keys):
+        return jsonify({"ok": False, "msg": "Index out of range"})
+    del quests[keys[idx]]
+    save_all_quests()
+    return jsonify({"ok": True, "quests": quests_json(load_quests())})
 
 # ══════════════════════════════════════════════════════════════════════════
 #  HISTORY

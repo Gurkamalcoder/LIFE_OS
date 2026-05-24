@@ -1,8 +1,8 @@
 {
     "Strength": {
-        "Level": 15,
-        "XP": 680,
-        "xp-required": 800
+        "Level": 1,
+        "XP": 0,
+        "xp-required": 100
     },
     "Vitality": {
         "Level": 1,
@@ -10,18 +10,18 @@
         "xp-required": 100
     },
     "Intelligence": {
-        "Level": 6,
-        "XP": 100,
-        "xp-required": 350
+        "Level": 1,
+        "XP": 0,
+        "xp-required": 100
     },
     "Willpower": {
-        "Level": 9,
-        "XP": 110,
-        "xp-required": 500
+        "Level": 1,
+        "XP": 0,
+        "xp-required": 100
     },
     "Skills": {
-        "Level": 5,
-        "XP": 150,
-        "xp-required": 300
+        "Level": 1,
+        "XP": 0,
+        "xp-required": 100
     }
 }
