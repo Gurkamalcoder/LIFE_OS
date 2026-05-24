@@ -45,7 +45,6 @@
     padding: 24px;
   }
 
-  /* ── Layout ── */
   .dashboard { max-width: 1280px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 
   .card {
@@ -62,7 +61,6 @@
   .grid-main { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 10px; }
   .grid-bot { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 10px; }
 
-  /* ── Typography ── */
   .section-label {
     font-family: var(--mono);
     font-size: 10px;
@@ -76,7 +74,6 @@
   }
   .section-label span { font-family: var(--sans); text-transform: none; letter-spacing: 0; color: var(--txt2); font-size: 11px; }
 
-  /* ── Top bar ── */
   .topbar {
     display: flex;
     align-items: center;
@@ -111,7 +108,6 @@
   .pill-amber { background: var(--amber-dim); color: var(--amber); border: 0.5px solid rgba(239,159,39,0.3); }
   .topbar-right { display: flex; align-items: center; gap: 8px; }
 
-  /* ── Metric cards ── */
   .mcard {
     background: var(--surface2);
     border: 0.5px solid var(--border);
@@ -124,7 +120,6 @@
   .mbar { height: 3px; background: var(--surface3); border-radius: 2px; margin-top: 10px; overflow: hidden; }
   .mbar-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
 
-  /* ── Day log ── */
   .day-row {
     display: flex; align-items: center; gap: 10px;
     padding: 9px 10px;
@@ -149,30 +144,22 @@
   .day-date { font-size: 12px; color: var(--txt); font-weight: 500; }
   .day-wake { font-size: 10px; color: var(--txt2); font-family: var(--mono); }
   .pip-row { display: flex; gap: 3px; }
-  .pip {
-    width: 8px; height: 8px; border-radius: 2px;
-  }
+  .pip { width: 8px; height: 8px; border-radius: 2px; }
   .pip-on { background: var(--green); }
   .pip-off { background: var(--surface3); }
   .day-meta { font-size: 10px; color: var(--txt3); font-family: var(--mono); white-space: nowrap; }
-  .dopamine-tag {
-    font-size: 9px; padding: 2px 7px; border-radius: 99px;
-    font-family: var(--mono); font-weight: 500;
-  }
+  .dopamine-tag { font-size: 9px; padding: 2px 7px; border-radius: 99px; font-family: var(--mono); font-weight: 500; }
   .dop-ok { background: var(--green-dim); color: var(--green-light); }
   .dop-slip { background: var(--red-dim); color: var(--red); }
 
-  /* ── Stats ── */
   .stat-item { margin-bottom: 12px; }
   .stat-item:last-child { margin-bottom: 0; }
   .stat-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
   .stat-name { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: var(--txt); }
-  .stat-icon { font-size: 14px; }
   .stat-lv { font-size: 10px; color: var(--txt3); font-family: var(--mono); }
   .stat-bar { height: 5px; background: var(--surface3); border-radius: 3px; overflow: hidden; }
   .stat-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
 
-  /* ── Today donut area ── */
   .today-wrap { display: flex; align-items: center; gap: 20px; }
   .donut-container { position: relative; width: 90px; height: 90px; flex-shrink: 0; }
   .donut-label {
@@ -198,7 +185,6 @@
   .ptile-name { font-size: 9px; color: var(--txt3); font-family: var(--mono); }
   .ptile.done .ptile-name { color: var(--green-light); }
 
-  /* ── Heatmap ── */
   .hm-grid { display: flex; flex-wrap: wrap; gap: 3px; }
   .hm-cell { width: 13px; height: 13px; border-radius: 3px; }
   .hm0 { background: var(--surface3); }
@@ -207,7 +193,6 @@
   .hm3 { background: var(--green); }
   .hm-legend { display: flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 10px; color: var(--txt3); font-family: var(--mono); }
 
-  /* ── Week strip ── */
   .week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; }
   .wday-col { text-align: center; }
   .wday-lbl { font-size: 9px; color: var(--txt3); font-family: var(--mono); margin-bottom: 4px; }
@@ -221,7 +206,6 @@
   .wday-fail { background: var(--red-dim); border-color: rgba(226,75,74,0.2); color: var(--red); }
   .wday-cur { border-color: rgba(239,159,39,0.4); color: var(--amber); }
 
-  /* ── Quests ── */
   .quest-row {
     display: flex; align-items: center; gap: 10px;
     padding: 9px 0;
@@ -232,14 +216,10 @@
   .quest-info { flex: 1; }
   .quest-name { font-size: 12px; font-weight: 500; color: var(--txt); }
   .quest-stat { font-size: 10px; color: var(--txt3); font-family: var(--mono); margin-top: 1px; }
-  .xp-badge {
-    font-size: 10px; font-family: var(--mono); font-weight: 500;
-    padding: 3px 9px; border-radius: 99px; white-space: nowrap;
-  }
+  .xp-badge { font-size: 10px; font-family: var(--mono); font-weight: 500; padding: 3px 9px; border-radius: 99px; white-space: nowrap; }
   .xp-green { background: var(--green-dim); color: var(--green-light); border: 0.5px solid rgba(29,158,117,0.3); }
   .xp-purple { background: rgba(127,119,221,0.1); color: #AFA9EC; border: 0.5px solid rgba(127,119,221,0.3); }
 
-  /* ── Sessions ── */
   .session-row {
     display: flex; align-items: flex-start; gap: 10px;
     padding: 8px 0;
@@ -252,7 +232,6 @@
   .session-meta { font-size: 10px; color: var(--txt3); font-family: var(--mono); margin-top: 2px; }
   .session-xp { font-size: 11px; font-family: var(--mono); color: var(--green); flex-shrink: 0; }
 
-  /* ── KPI grid ── */
   .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
   .kpi-item {
     padding: 10px 12px;
@@ -263,25 +242,16 @@
   .kpi-label { font-size: 10px; color: var(--txt3); font-family: var(--mono); }
   .kpi-val { font-size: 13px; font-weight: 500; color: var(--txt); margin-top: 3px; }
 
-  /* ── Phase bar ── */
-  .phase-bar-track {
-    height: 8px; background: var(--surface3);
-    border-radius: 4px; overflow: hidden; margin: 10px 0 6px;
-  }
+  .phase-bar-track { height: 8px; background: var(--surface3); border-radius: 4px; overflow: hidden; margin: 10px 0 6px; }
   .phase-bar-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 1s ease; }
 
-  /* ── Failure analysis ── */
-  .fail-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 0; border-bottom: 0.5px solid var(--border);
-  }
+  .fail-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
   .fail-item:last-child { border-bottom: none; }
   .fail-label { flex: 1; font-size: 12px; color: var(--txt); }
   .fail-pct { font-size: 11px; font-family: var(--mono); color: var(--red); }
   .fail-bar-wrap { width: 80px; height: 4px; background: var(--surface3); border-radius: 2px; overflow: hidden; }
   .fail-bar-fill { height: 100%; background: var(--red); border-radius: 2px; }
 
-  /* ── Action button ── */
   .action-btn {
     display: flex; align-items: center; justify-content: center; gap: 6px;
     width: 100%; padding: 10px;
@@ -299,14 +269,245 @@
   }
   .action-btn:hover { background: rgba(29,158,117,0.2); }
 
-  /* ── Chart defaults ── */
   canvas { display: block; }
 
-  /* ── Scrollable sections ── */
   .scroll-y { overflow-y: auto; max-height: 380px; padding-right: 4px; }
   .scroll-y::-webkit-scrollbar { width: 3px; }
   .scroll-y::-webkit-scrollbar-track { background: transparent; }
   .scroll-y::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  /* ══ DEEP WORK ══ */
+  .dw-slot-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .dw-slot {
+    padding: 10px 8px;
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    background: var(--surface2);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .dw-slot:hover { border-color: var(--border2); }
+  .dw-slot.selected { background: var(--green-dim); border-color: var(--green); }
+  .dw-slot-icon { font-size: 16px; margin-bottom: 3px; }
+  .dw-slot-name { font-size: 10px; font-family: var(--mono); color: var(--txt3); }
+  .dw-slot.selected .dw-slot-name { color: var(--green-light); }
+
+  .dw-form-row { margin-bottom: 10px; }
+  .dw-label { font-size: 10px; font-family: var(--mono); color: var(--txt3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 5px; }
+  .dw-input {
+    width: 100%;
+    background: var(--surface2);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--txt);
+    font-family: var(--sans);
+    font-size: 13px;
+    padding: 9px 12px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .dw-input:focus { border-color: var(--green); }
+  .dw-input::placeholder { color: var(--txt3); }
+  select.dw-input { cursor: pointer; }
+  select.dw-input option { background: var(--surface2); }
+
+  .dw-stat-pills {
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  .dw-stat-pill {
+    padding: 5px 12px;
+    border-radius: 99px;
+    font-size: 11px; font-family: var(--mono);
+    border: 0.5px solid var(--border);
+    background: var(--surface2);
+    color: var(--txt3);
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .dw-stat-pill:hover { border-color: var(--border2); color: var(--txt2); }
+  .dw-stat-pill.active { border-color: var(--green); background: var(--green-dim); color: var(--green-light); }
+  .dw-stat-pill[data-stat="Strength"].active { border-color: var(--green); background: rgba(29,158,117,0.12); color: var(--green-light); }
+  .dw-stat-pill[data-stat="Vitality"].active { border-color: var(--red); background: rgba(226,75,74,0.1); color: var(--red); }
+  .dw-stat-pill[data-stat="Intelligence"].active { border-color: var(--purple); background: rgba(127,119,221,0.12); color: #AFA9EC; }
+  .dw-stat-pill[data-stat="Willpower"].active { border-color: var(--amber); background: rgba(239,159,39,0.1); color: var(--amber); }
+  .dw-stat-pill[data-stat="Skills"].active { border-color: var(--blue); background: rgba(55,138,221,0.1); color: var(--blue); }
+
+  .dw-start-btn {
+    width: 100%; padding: 11px;
+    background: var(--green-dim);
+    color: var(--green-light);
+    border: 0.5px solid var(--green);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.08em;
+    transition: background 0.15s;
+    margin-top: 4px;
+  }
+  .dw-start-btn:hover { background: rgba(29,158,117,0.22); }
+  .dw-start-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* running state */
+  .dw-running {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .dw-running.active { display: flex; }
+  .dw-setup { display: flex; flex-direction: column; gap: 0; }
+  .dw-setup.hidden { display: none; }
+
+  .dw-timer-display {
+    background: var(--surface2);
+    border: 0.5px solid var(--green);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .dw-timer-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--green);
+    animation: dw-pulse 1.2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  @keyframes dw-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.7)} }
+  .dw-timer-info { flex: 1; min-width: 0; }
+  .dw-timer-task { font-size: 13px; font-weight: 500; color: var(--txt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dw-timer-sub { font-size: 10px; color: var(--txt3); font-family: var(--mono); margin-top: 2px; }
+  .dw-timer-count {
+    font-size: 24px; font-family: var(--mono); font-weight: 500;
+    color: var(--green); flex-shrink: 0; letter-spacing: 0.05em;
+    min-width: 72px; text-align: right;
+  }
+
+  .dw-stop-btn {
+    width: 100%; padding: 9px;
+    background: rgba(226,75,74,0.07);
+    color: var(--red);
+    border: 0.5px solid rgba(226,75,74,0.3);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.06em;
+    transition: background 0.15s;
+  }
+  .dw-stop-btn:hover { background: rgba(226,75,74,0.14); }
+
+  /* stop modal */
+  .dw-modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .dw-modal-overlay.open { display: flex; }
+  .dw-modal {
+    background: var(--surface);
+    border: 0.5px solid var(--border2);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    width: 100%; max-width: 480px;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .dw-modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dw-modal-title { font-size: 11px; font-family: var(--mono); letter-spacing: 0.1em; color: var(--txt3); text-transform: uppercase; }
+  .dw-modal-close { font-size: 14px; color: var(--txt3); cursor: pointer; padding: 2px 6px; }
+  .dw-modal-close:hover { color: var(--txt); }
+
+  .dw-modal-session-info {
+    padding: 10px 12px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    border-left: 2px solid var(--green);
+    font-size: 12px; color: var(--txt2);
+    font-family: var(--mono);
+    line-height: 1.7;
+  }
+  .dw-modal-session-info strong { color: var(--txt); font-size: 13px; font-family: var(--sans); }
+
+  .dw-modal-save-btn {
+    width: 100%; padding: 11px;
+    background: var(--green-dim); color: var(--green-light);
+    border: 0.5px solid var(--green);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    cursor: pointer; letter-spacing: 0.08em;
+    transition: background 0.15s;
+  }
+  .dw-modal-save-btn:hover { background: rgba(29,158,117,0.22); }
+  .dw-modal-cancel-btn {
+    width: 100%; padding: 9px;
+    background: transparent; color: var(--txt3);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: var(--mono); font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .dw-modal-cancel-btn:hover { border-color: var(--border2); color: var(--txt2); }
+
+  /* saved sessions list */
+  .dw-saved-list { display: flex; flex-direction: column; gap: 6px; }
+  .dw-saved-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    border: 0.5px solid var(--border);
+    position: relative;
+  }
+  .dw-saved-bar { width: 2px; background: var(--green); border-radius: 2px; align-self: stretch; flex-shrink: 0; }
+  .dw-saved-body { flex: 1; min-width: 0; }
+  .dw-saved-task { font-size: 12px; font-weight: 500; color: var(--txt); }
+  .dw-saved-meta { font-size: 10px; font-family: var(--mono); color: var(--txt3); margin-top: 3px; }
+  .dw-saved-output { font-size: 11px; color: var(--txt2); margin-top: 4px; font-style: italic; }
+  .dw-saved-xp { font-size: 12px; font-family: var(--mono); color: var(--green); flex-shrink: 0; font-weight: 500; }
+
+  .dw-empty { font-size: 11px; font-family: var(--mono); color: var(--txt3); text-align: center; padding: 20px 0; }
+
+  /* xp flash */
+  .xp-flash {
+    position: fixed; top: 24px; right: 24px; z-index: 99999;
+    background: var(--green-dim); border: 0.5px solid var(--green);
+    color: var(--green-light); font-family: var(--mono); font-size: 14px; font-weight: 500;
+    padding: 10px 20px; border-radius: var(--radius-sm);
+    opacity: 0; transform: translateY(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  .xp-flash.show { opacity: 1; transform: translateY(0); }
+
+  /* ── Settings modal ── */
+  .settings-section { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 0.5px solid var(--border); }
+  .settings-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .settings-section-title { font-size: 10px; font-family: var(--mono); color: var(--txt3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .settings-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .settings-row:last-child { margin-bottom: 0; }
+  .settings-label { font-size: 12px; color: var(--txt2); }
+  .settings-desc { font-size: 10px; font-family: var(--mono); color: var(--txt3); margin-top: 2px; }
+  .settings-input { background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius-sm); color: var(--txt); font-family: var(--mono); font-size: 12px; padding: 7px 10px; outline: none; transition: border-color 0.15s; }
+  .settings-input:focus { border-color: var(--green); }
+  .settings-btn { padding: 8px 16px; border-radius: var(--radius-sm); font-family: var(--mono); font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .settings-btn-green { background: var(--green-dim); color: var(--green-light); border: 0.5px solid var(--green); }
+  .settings-btn-green:hover { background: rgba(29,158,117,0.22); }
+  .settings-btn-red { background: var(--red-dim); color: var(--red); border: 0.5px solid rgba(226,75,74,0.3); }
+  .settings-btn-red:hover { background: rgba(226,75,74,0.18); }
+  .settings-btn-amber { background: var(--amber-dim); color: var(--amber); border: 0.5px solid rgba(239,159,39,0.3); }
+  .settings-btn-amber:hover { background: rgba(239,159,39,0.18); }
+  .settings-confirm { display:none; padding: 10px 14px; background: rgba(226,75,74,0.08); border: 0.5px solid rgba(226,75,74,0.3); border-radius: var(--radius-sm); font-size: 12px; color: var(--red); margin-top: 8px; }
+  .settings-confirm.show { display: block; }
 </style>
 </head>
 <body>
@@ -318,12 +519,13 @@
       <div class="avatar">RY</div>
       <div>
         <div class="player-name">Ryuji</div>
-        <div class="player-sub">White Room Arc &mdash; Day 7 / 720 &mdash; Phase 1/8</div>
+        <div class="player-sub" id="arcSubline">White Room Arc &mdash; Day 7 / 720 &mdash; Phase 1/8</div>
       </div>
     </div>
     <div class="topbar-right">
-      <span class="pill pill-green">&#9632; Phase 1 &mdash; Stabilization</span>
-      <span class="pill pill-amber">Rank E &mdash; Lv 9</span>
+      <span class="pill pill-green" id="phasePill">&#9632; Phase 1 &mdash; Stabilization</span>
+      <span class="pill pill-amber" id="rankPill">Rank E &mdash; Lv 9</span>
+      <button onclick="openSettings()" style="display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--surface2);border:0.5px solid var(--border2);border-radius:var(--radius-sm);color:var(--txt2);font-family:var(--mono);font-size:11px;cursor:pointer;transition:all 0.15s" onmouseover="this.style.borderColor='var(--border2)';this.style.color='var(--txt)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--txt2)'">&#9881; Settings</button>
     </div>
   </div>
 
@@ -357,7 +559,6 @@
 
   <!-- MAIN GRID -->
   <div class="grid-main">
-
     <!-- DAY LOG -->
     <div class="card">
       <div class="section-label">Day log — phase 1 <span>7 days logged</span></div>
@@ -465,8 +666,6 @@
 
     <!-- RIGHT COLUMN -->
     <div style="display:flex;flex-direction:column;gap:10px">
-
-      <!-- CORE STATS -->
       <div class="card card-sm">
         <div class="section-label">Core stats</div>
         <div class="stat-item">
@@ -506,42 +705,23 @@
         </div>
       </div>
 
-      <!-- TODAY PILLARS -->
       <div class="card card-sm">
         <div class="section-label">Today's pillars <span id="pillarLabel">0 / 6 done</span></div>
         <div class="today-wrap">
           <div class="donut-container">
-            <canvas id="donutChart" width="90" height="90" aria-label="Today's pillar completion donut chart">0 of 6 pillars complete today.</canvas>
+            <canvas id="donutChart" width="90" height="90"></canvas>
             <div class="donut-label">
               <div class="donut-val" id="donutVal">0/6</div>
               <div class="donut-sub">pillars</div>
             </div>
           </div>
           <div class="pillar-tiles" style="flex:1">
-            <div class="ptile" onclick="togglePillar(0)" id="pt0">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">push-ups</div>
-            </div>
-            <div class="ptile" onclick="togglePillar(1)" id="pt1">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">sit-ups</div>
-            </div>
-            <div class="ptile" onclick="togglePillar(2)" id="pt2">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">squats</div>
-            </div>
-            <div class="ptile" onclick="togglePillar(3)" id="pt3">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">pull-ups</div>
-            </div>
-            <div class="ptile" onclick="togglePillar(4)" id="pt4">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">meditation</div>
-            </div>
-            <div class="ptile" onclick="togglePillar(5)" id="pt5">
-              <div class="ptile-icon">&#9675;</div>
-              <div class="ptile-name">reading</div>
-            </div>
+            <div class="ptile" onclick="togglePillar(0)" id="pt0"><div class="ptile-icon">&#9675;</div><div class="ptile-name">push-ups</div></div>
+            <div class="ptile" onclick="togglePillar(1)" id="pt1"><div class="ptile-icon">&#9675;</div><div class="ptile-name">sit-ups</div></div>
+            <div class="ptile" onclick="togglePillar(2)" id="pt2"><div class="ptile-icon">&#9675;</div><div class="ptile-name">squats</div></div>
+            <div class="ptile" onclick="togglePillar(3)" id="pt3"><div class="ptile-icon">&#9675;</div><div class="ptile-name">pull-ups</div></div>
+            <div class="ptile" onclick="togglePillar(4)" id="pt4"><div class="ptile-icon">&#9675;</div><div class="ptile-name">meditation</div></div>
+            <div class="ptile" onclick="togglePillar(5)" id="pt5"><div class="ptile-icon">&#9675;</div><div class="ptile-name">reading</div></div>
           </div>
         </div>
         <div style="margin-top:12px;padding-top:10px;border-top:0.5px solid var(--border)">
@@ -549,30 +729,108 @@
           <div style="font-size:12px;color:var(--txt)">110 reps &times; 4 exercises &bull; 60 min meditation &bull; reading daily</div>
         </div>
       </div>
+    </div>
+  </div>
 
+  <!-- ══ DEEP WORK SECTION ══ -->
+  <div class="grid-2">
+
+    <!-- START / RUNNING panel -->
+    <div class="card card-sm">
+      <div class="section-label">Deep work session <span id="dwSessionCount">0 today</span></div>
+
+      <!-- SETUP FORM -->
+      <div class="dw-setup" id="dwSetup">
+        <!-- Slot picker -->
+        <div class="dw-form-row">
+          <div class="dw-label">Time slot</div>
+          <div class="dw-slot-row">
+            <div class="dw-slot selected" id="slot-morning" onclick="selectSlot('morning')">
+              <div class="dw-slot-icon">🌅</div>
+              <div class="dw-slot-name">morning</div>
+            </div>
+            <div class="dw-slot" id="slot-afternoon" onclick="selectSlot('afternoon')">
+              <div class="dw-slot-icon">☀️</div>
+              <div class="dw-slot-name">afternoon</div>
+            </div>
+            <div class="dw-slot" id="slot-night" onclick="selectSlot('night')">
+              <div class="dw-slot-icon">🌙</div>
+              <div class="dw-slot-name">night</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task input -->
+        <div class="dw-form-row">
+          <div class="dw-label">Task / focus</div>
+          <input class="dw-input" id="dwTask" type="text" placeholder="What are you working on?">
+        </div>
+
+        <!-- Task type -->
+        <div class="dw-form-row">
+          <div class="dw-label">Task type</div>
+          <select class="dw-input" id="dwTaskType">
+            <option value="Study">Study</option>
+            <option value="Coding">Coding</option>
+            <option value="Research">Research</option>
+            <option value="Reading">Reading</option>
+            <option value="Presentation">Presentation</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Stat pills -->
+        <div class="dw-form-row">
+          <div class="dw-label">Primary stat</div>
+          <div class="dw-stat-pills">
+            <div class="dw-stat-pill active" data-stat="Intelligence" onclick="selectStat(this)">Intelligence</div>
+            <div class="dw-stat-pill" data-stat="Skills" onclick="selectStat(this)">Skills</div>
+            <div class="dw-stat-pill" data-stat="Willpower" onclick="selectStat(this)">Willpower</div>
+            <div class="dw-stat-pill" data-stat="Strength" onclick="selectStat(this)">Strength</div>
+            <div class="dw-stat-pill" data-stat="Vitality" onclick="selectStat(this)">Vitality</div>
+          </div>
+        </div>
+
+        <button class="dw-start-btn" id="dwStartBtn" onclick="startDW()">▶ START SESSION</button>
+      </div>
+
+      <!-- RUNNING STATE -->
+      <div class="dw-running" id="dwRunning">
+        <div class="dw-timer-display">
+          <div class="dw-timer-dot"></div>
+          <div class="dw-timer-info">
+            <div class="dw-timer-task" id="dwTimerTask">—</div>
+            <div class="dw-timer-sub" id="dwTimerSub">—</div>
+          </div>
+          <div class="dw-timer-count" id="dwTimerCount">00:00</div>
+        </div>
+        <button class="dw-stop-btn" onclick="openStopModal()">⏹ STOP SESSION</button>
+      </div>
+    </div>
+
+    <!-- SAVED SESSIONS -->
+    <div class="card card-sm">
+      <div class="section-label">Today's deep work log <span id="dwTotalXP">0 XP earned</span></div>
+      <div id="dwSavedList" class="dw-saved-list">
+        <div class="dw-empty">No sessions logged yet today</div>
+      </div>
     </div>
   </div>
 
   <!-- BOT GRID -->
   <div class="grid-bot">
-
-    <!-- LEFT: heatmap + week strip -->
     <div style="display:flex;flex-direction:column;gap:10px">
-
       <div class="card card-sm">
         <div class="section-label">Phase 1 completion heatmap <span>90 days</span></div>
         <div class="hm-grid" id="hmGrid"></div>
         <div class="hm-legend">
           <div style="display:flex;gap:3px">
-            <div class="hm-cell hm0"></div>
-            <div class="hm-cell hm1"></div>
-            <div class="hm-cell hm2"></div>
-            <div class="hm-cell hm3"></div>
+            <div class="hm-cell hm0"></div><div class="hm-cell hm1"></div>
+            <div class="hm-cell hm2"></div><div class="hm-cell hm3"></div>
           </div>
           <span>none &rarr; full (6/6 pillars)</span>
         </div>
       </div>
-
       <div class="card card-sm">
         <div class="section-label">This week</div>
         <div class="week-strip">
@@ -585,36 +843,16 @@
           <div class="wday-col"><div class="wday-lbl">D7</div><div class="wday-box wday-cur">&#9632;</div></div>
         </div>
       </div>
-
       <div class="card card-sm">
         <div class="section-label">Failure pattern analysis</div>
-        <div class="fail-item">
-          <div class="fail-label">Pillars skipped</div>
-          <div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:83%"></div></div>
-          <div class="fail-pct">5/6 days</div>
-        </div>
-        <div class="fail-item">
-          <div class="fail-label">Deep work incomplete</div>
-          <div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:67%"></div></div>
-          <div class="fail-pct">4/6 days</div>
-        </div>
-        <div class="fail-item">
-          <div class="fail-label">Dopamine slipped</div>
-          <div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:50%"></div></div>
-          <div class="fail-pct">3/6 days</div>
-        </div>
-        <div class="fail-item">
-          <div class="fail-label">Late wake (&gt;6:30)</div>
-          <div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:50%"></div></div>
-          <div class="fail-pct">3/6 days</div>
-        </div>
+        <div class="fail-item"><div class="fail-label">Pillars skipped</div><div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:83%"></div></div><div class="fail-pct">5/6 days</div></div>
+        <div class="fail-item"><div class="fail-label">Deep work incomplete</div><div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:67%"></div></div><div class="fail-pct">4/6 days</div></div>
+        <div class="fail-item"><div class="fail-label">Dopamine slipped</div><div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:50%"></div></div><div class="fail-pct">3/6 days</div></div>
+        <div class="fail-item"><div class="fail-label">Late wake (&gt;6:30)</div><div class="fail-bar-wrap"><div class="fail-bar-fill" style="width:50%"></div></div><div class="fail-pct">3/6 days</div></div>
       </div>
-
     </div>
 
-    <!-- RIGHT: quests + sessions + KPIs -->
     <div style="display:flex;flex-direction:column;gap:10px">
-
       <div class="card card-sm">
         <div class="section-label">Active quests <span>5 pending</span></div>
         <div class="quest-row">
@@ -662,31 +900,27 @@
           <div style="font-size:10px;color:var(--txt3);font-family:var(--mono)">83 days remaining to ascension test</div>
         </div>
       </div>
-
     </div>
   </div>
 
   <!-- CHARTS ROW -->
   <div class="grid-3">
-
     <div class="card card-sm">
       <div class="section-label">XP per day</div>
       <div style="position:relative;height:160px">
-        <canvas id="xpBar" role="img" aria-label="Bar chart of XP earned per day. Day 4 highest at 2710 XP.">D1:720 D2:0 D3:330 D4:2710 D5:480 D6:360 D7:0</canvas>
+        <canvas id="xpBar"></canvas>
       </div>
       <div style="display:flex;gap:12px;margin-top:8px;font-size:10px;color:var(--txt3);font-family:var(--mono)">
         <span><span style="display:inline-block;width:8px;height:8px;background:var(--green);border-radius:2px;margin-right:4px"></span>cleared</span>
         <span><span style="display:inline-block;width:8px;height:8px;background:var(--red);border-radius:2px;margin-right:4px"></span>failed</span>
       </div>
     </div>
-
     <div class="card card-sm">
       <div class="section-label">Stat distribution</div>
       <div style="position:relative;height:160px">
-        <canvas id="statBar" role="img" aria-label="Horizontal bar chart showing stat levels: Willpower 7, Intelligence 5, Skills 5, Strength 3, Vitality 1.">Willpower:7 Intelligence:5 Skills:5 Strength:3 Vitality:1</canvas>
+        <canvas id="statBar"></canvas>
       </div>
     </div>
-
     <div class="card card-sm">
       <div class="section-label">Deep work sessions</div>
       <div class="scroll-y" style="max-height:200px">
@@ -725,27 +959,128 @@
           <div class="session-body"><div class="session-task">Web dev — HTML basics</div><div class="session-meta">D6 &bull; Morning &bull; 100 min &bull; Coding</div></div>
           <div class="session-xp">+300</div>
         </div>
-        <div class="session-row">
-          <div class="session-bar"></div>
-          <div class="session-body"><div class="session-task">Python CLI + guessing game</div><div class="session-meta">D4 (logged) &bull; 90 min &bull; Coding</div></div>
-          <div class="session-xp">+270</div>
-        </div>
       </div>
     </div>
-
   </div>
 
 </div>
 
-<script>
-const pillars = [false,false,false,false,false,false];
-let donutChart;
+<!-- ══ STOP SESSION MODAL ══ -->
+<div class="dw-modal-overlay" id="dwStopModal">
+  <div class="dw-modal">
+    <div class="dw-modal-header">
+      <div class="dw-modal-title">End session</div>
+      <div class="dw-modal-close" onclick="closeStopModal()">✕</div>
+    </div>
+    <div class="dw-modal-session-info" id="dwStopInfo">—</div>
 
+    <!-- Duration override -->
+    <div>
+      <div class="dw-label" style="margin-bottom:5px">Actual duration (min) <span style="color:var(--txt3);font-weight:400">— override timer if needed</span></div>
+      <input class="dw-input" id="dwManualDur" type="number" min="1" max="600" placeholder="Leave blank to use timer">
+    </div>
+
+    <!-- Output -->
+    <div>
+      <div class="dw-label" style="margin-bottom:5px">What did you produce / complete?</div>
+      <textarea class="dw-input" id="dwOutput" rows="3" placeholder="Finished chapter 3, solved 2 Leetcode problems, wrote 500 words…" style="resize:vertical;line-height:1.5"></textarea>
+    </div>
+
+    <button class="dw-modal-save-btn" onclick="saveSession()">⊕ SAVE SESSION</button>
+    <button class="dw-modal-cancel-btn" onclick="closeStopModal()">Cancel — keep running</button>
+  </div>
+</div>
+
+<!-- XP Flash -->
+<div class="xp-flash" id="xpFlash"></div>
+
+<!-- Pillar Input Modal -->
+<div class="dw-modal-overlay" id="pillarModal">
+  <div class="dw-modal" style="max-width:360px">
+    <div class="dw-modal-header">
+      <div class="dw-modal-title" id="pillarModalTitle">Log pillar</div>
+      <div class="dw-modal-close" onclick="closePillarModal()">&#10005;</div>
+    </div>
+    <div class="dw-modal-session-info" id="pillarModalInfo">&#8212;</div>
+    <div>
+      <div class="dw-label" style="margin-bottom:5px" id="pillarModalInputLabel">Amount</div>
+      <input class="dw-input" id="pillarModalInput" type="number" min="0" placeholder="0" style="font-size:20px;text-align:center;padding:12px">
+    </div>
+    <div id="pillarModalResult" style="display:none;padding:10px 12px;border-radius:6px;font-family:var(--mono);font-size:12px;text-align:center"></div>
+    <button class="dw-modal-save-btn" id="pillarModalSaveBtn" onclick="submitPillar()">&#10003; CONFIRM</button>
+    <button class="dw-modal-cancel-btn" onclick="closePillarModal()">Cancel</button>
+  </div>
+</div>
+<script>
+// ── State ──
+const pillars = [false,false,false,false,false,false];
+const pillarValues = [0,0,0,0,0,0]; // logged amounts
+let donutChart;
+let activePillarIdx = null;
+
+// Deep work state
+let dwSlot = 'morning';
+let dwStat = 'Intelligence';
+let dwSession = null;
+let dwTimerInterval = null;
+let dwSessions = [];
+
+// Pillar config: name, threshold, unit
+const PILLAR_CFG = [
+  { name: 'Push-ups',   threshold: 110, unit: 'reps' },
+  { name: 'Sit-ups',    threshold: 110, unit: 'reps' },
+  { name: 'Squats',     threshold: 110, unit: 'reps' },
+  { name: 'Pull-ups',   threshold: 110, unit: 'reps' },
+  { name: 'Meditation', threshold: 60,  unit: 'min'  },
+  { name: 'Reading',    threshold: 5,   unit: 'pages'},
+];
+
+// ── Pillar logic ──
 function togglePillar(i) {
-  pillars[i] = !pillars[i];
+  activePillarIdx = i;
+  const cfg = PILLAR_CFG[i];
+  const prev = pillarValues[i];
+  document.getElementById('pillarModalTitle').textContent = cfg.name;
+  document.getElementById('pillarModalInfo').innerHTML =
+    '<strong>' + cfg.name + '</strong><br>' +
+    'Target: <span style="color:var(--green-light)">' + cfg.threshold + ' ' + cfg.unit + '</span>' +
+    (prev > 0 ? ' &nbsp;&bull;&nbsp; Last entry: <span style="color:var(--amber)">' + prev + ' ' + cfg.unit + '</span>' : '');
+  document.getElementById('pillarModalInputLabel').textContent = 'Enter ' + cfg.unit + ' completed';
+  const input = document.getElementById('pillarModalInput');
+  input.value = prev > 0 ? prev : '';
+  input.placeholder = 'e.g. ' + cfg.threshold;
+  document.getElementById('pillarModalResult').style.display = 'none';
+  document.getElementById('pillarModal').classList.add('open');
+  setTimeout(() => input.focus(), 100);
+}
+
+function submitPillar() {
+  const i = activePillarIdx;
+  const cfg = PILLAR_CFG[i];
+  const val = parseInt(document.getElementById('pillarModalInput').value) || 0;
+  const passed = val >= cfg.threshold;
+  pillarValues[i] = val;
+  pillars[i] = passed;
+
+  // show result briefly
+  const res = document.getElementById('pillarModalResult');
+  res.style.display = 'block';
+  if (passed) {
+    res.style.background = 'var(--green-dim)';
+    res.style.color = 'var(--green-light)';
+    res.style.border = '0.5px solid var(--green)';
+    res.textContent = '✓ ' + val + ' ' + cfg.unit + ' — threshold cleared!';
+  } else {
+    res.style.background = 'var(--red-dim)';
+    res.style.color = 'var(--red)';
+    res.style.border = '0.5px solid rgba(226,75,74,0.3)';
+    res.textContent = '✕ ' + val + ' / ' + cfg.threshold + ' ' + cfg.unit + ' — not cleared';
+  }
+
+  // update tile
   const tile = document.getElementById('pt'+i);
-  const pip = document.getElementById('p'+i);
-  if(pillars[i]) {
+  const pip  = document.getElementById('p'+i);
+  if (passed) {
     tile.classList.add('done');
     tile.querySelector('.ptile-icon').textContent = '✓';
     pip.classList.replace('pip-off','pip-on');
@@ -754,86 +1089,427 @@ function togglePillar(i) {
     tile.querySelector('.ptile-icon').textContent = '○';
     pip.classList.replace('pip-on','pip-off');
   }
+  // show partial amber state if entered but not passed
+  if (!passed && val > 0) {
+    tile.style.borderColor = 'rgba(239,159,39,0.4)';
+    tile.querySelector('.ptile-name').style.color = 'var(--amber)';
+  } else if (passed) {
+    tile.style.borderColor = '';
+    tile.querySelector('.ptile-name').style.color = '';
+  } else {
+    tile.style.borderColor = '';
+    tile.querySelector('.ptile-name').style.color = '';
+  }
+
+  updatePillarSummary();
+  setTimeout(() => closePillarModal(), 900);
+}
+
+function closePillarModal() {
+  document.getElementById('pillarModal').classList.remove('open');
+  activePillarIdx = null;
+}
+
+function updatePillarSummary() {
   const done = pillars.filter(Boolean).length;
   document.getElementById('donutVal').textContent = done+'/6';
   document.getElementById('pillarLabel').textContent = done+' / 6 done';
   document.getElementById('todayPillarCount').textContent = done+'/6';
-  if(donutChart) {
-    donutChart.data.datasets[0].data = [done, 6-done];
-    donutChart.update();
+  if(donutChart){ donutChart.data.datasets[0].data=[done,6-done]; donutChart.update(); }
+}
+
+// ── Slot picker ──
+function selectSlot(s) {
+  dwSlot = s;
+  ['morning','afternoon','night'].forEach(k=>{
+    document.getElementById('slot-'+k).classList.toggle('selected', k===s);
+  });
+}
+
+// ── Stat picker ──
+function selectStat(el) {
+  document.querySelectorAll('.dw-stat-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  dwStat = el.dataset.stat;
+}
+
+// ── Start session ──
+function startDW() {
+  const task = document.getElementById('dwTask').value.trim();
+  if(!task){ pulseInput('dwTask'); return; }
+  const taskType = document.getElementById('dwTaskType').value;
+
+  dwSession = { task, taskType, stat: dwStat, slot: dwSlot, startTime: Date.now() };
+
+  document.getElementById('dwSetup').classList.add('hidden');
+  document.getElementById('dwRunning').classList.add('active');
+
+  const slotLabel = dwSlot.charAt(0).toUpperCase()+dwSlot.slice(1);
+  document.getElementById('dwTimerTask').textContent = task;
+  document.getElementById('dwTimerSub').textContent  = `${slotLabel} · ${taskType} → ${dwStat}`;
+
+  dwTimerInterval = setInterval(tickTimer, 1000);
+}
+
+function tickTimer() {
+  if(!dwSession) return;
+  const elapsed = Math.floor((Date.now()-dwSession.startTime)/1000);
+  const m = Math.floor(elapsed/60), s = elapsed%60;
+  document.getElementById('dwTimerCount').textContent =
+    String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+// ── Stop modal ──
+function openStopModal() {
+  if(!dwSession) return;
+  const elapsed = Math.floor((Date.now()-dwSession.startTime)/60000);
+  const minReq  = 90;
+  const ok      = elapsed >= minReq;
+  const slotLabel = dwSession.slot.charAt(0).toUpperCase()+dwSession.slot.slice(1);
+  document.getElementById('dwStopInfo').innerHTML =
+    `<strong>${dwSession.task}</strong><br>` +
+    `${slotLabel} · ${dwSession.taskType} · <span style="color:${ok?'var(--green)':'var(--amber)'}">${elapsed}m elapsed</span> (min ${minReq}m)<br>` +
+    `<span style="color:var(--txt3);font-size:9px">Stat: ${dwSession.stat} · XP = duration × 3</span>`;
+  document.getElementById('dwManualDur').value = '';
+  document.getElementById('dwOutput').value    = '';
+  document.getElementById('dwStopModal').classList.add('open');
+}
+
+function closeStopModal() {
+  document.getElementById('dwStopModal').classList.remove('open');
+}
+
+// ── Save session ──
+function saveSession() {
+  if(!dwSession) return;
+  const elapsed    = Math.floor((Date.now()-dwSession.startTime)/60000);
+  const manualRaw  = document.getElementById('dwManualDur').value.trim();
+  const duration   = manualRaw ? Math.max(1, parseInt(manualRaw)||elapsed) : elapsed;
+  const output     = document.getElementById('dwOutput').value.trim();
+  const xp         = duration * 3;
+
+  const saved = { ...dwSession, duration, output, xp, id: Date.now() };
+  dwSessions.push(saved);
+
+  // reset
+  clearInterval(dwTimerInterval); dwTimerInterval = null;
+  dwSession = null;
+  document.getElementById('dwTimerCount').textContent = '00:00';
+  document.getElementById('dwRunning').classList.remove('active');
+  document.getElementById('dwSetup').classList.remove('hidden');
+  document.getElementById('dwTask').value = '';
+  closeStopModal();
+
+  renderSavedSessions();
+  showXpFlash('+'+xp+' XP');
+}
+
+// ── Render saved sessions ──
+function renderSavedSessions() {
+  const list   = document.getElementById('dwSavedList');
+  const totalXP = dwSessions.reduce((a,s)=>a+s.xp,0);
+  document.getElementById('dwSessionCount').textContent = dwSessions.length+' today';
+  document.getElementById('dwTotalXP').textContent      = totalXP+' XP earned';
+
+  if(!dwSessions.length){
+    list.innerHTML = '<div class="dw-empty">No sessions logged yet today</div>';
+    return;
+  }
+  list.innerHTML = dwSessions.map(s=>{
+    const slotLabel = s.slot.charAt(0).toUpperCase()+s.slot.slice(1);
+    return `
+      <div class="dw-saved-item">
+        <div class="dw-saved-bar"></div>
+        <div class="dw-saved-body">
+          <div class="dw-saved-task">${escHtml(s.task)}</div>
+          <div class="dw-saved-meta">${slotLabel} · ${s.taskType} · ${s.duration}min · ${s.stat}</div>
+          ${s.output ? '<div class="dw-saved-output">'+escHtml(s.output)+'</div>' : ''}
+        </div>
+        <div class="dw-saved-xp">+${s.xp}</div>
+      </div>`;
+  }).join('');
+}
+
+function escHtml(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── XP Flash ──
+function showXpFlash(msg) {
+  const el = document.getElementById('xpFlash');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'), 2200);
+}
+
+// ── Input pulse ──
+function pulseInput(id) {
+  const el = document.getElementById(id);
+  el.style.borderColor = 'var(--red)';
+  el.focus();
+  setTimeout(()=>el.style.borderColor='', 1200);
+}
+
+// ── Settings ──
+const SETTINGS_KEY = 'lifeos_settings';
+
+function loadSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}');
+    return {
+      arcStart: s.arcStart || '2026-05-17',
+      playerName: s.playerName || 'Ryuji',
+      arcDays: s.arcDays || 720,
+      thresholds: s.thresholds || [110,110,110,110,60,5]
+    };
+  } catch(e) {
+    return { arcStart:'2026-05-17', playerName:'Ryuji', arcDays:720, thresholds:[110,110,110,60,5] };
   }
 }
 
+function saveSettings(s) {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+}
+
+function applyArcToUI(s) {
+  const start = new Date(s.arcStart);
+  const today = new Date();
+  today.setHours(0,0,0,0); start.setHours(0,0,0,0);
+  const dayNum = Math.max(1, Math.floor((today - start) / 86400000) + 1);
+  const phase  = Math.min(8, Math.ceil(dayNum / (s.arcDays / 8)));
+  document.getElementById('arcSubline').textContent =
+    'White Room Arc — Day ' + dayNum + ' / ' + s.arcDays + ' — Phase ' + phase + '/8';
+  document.getElementById('phasePill').textContent = '■ Phase ' + phase + ' — Stabilization';
+  document.querySelector('.player-name').textContent = s.playerName;
+}
+
+function openSettings() {
+  const s = loadSettings();
+  document.getElementById('settingsArcDate').value   = s.arcStart;
+  document.getElementById('settingsPlayerName').value = s.playerName;
+  document.getElementById('settingsArcDays').value   = s.arcDays;
+  // render threshold inputs
+  const grid = document.getElementById('pillarThresholdGrid');
+  const labels = ['Push-ups','Sit-ups','Squats','Pull-ups','Meditation','Reading'];
+  const units  = ['reps','reps','reps','reps','min','pages'];
+  grid.innerHTML = labels.map((l,i) =>
+    `<div style="background:var(--surface2);padding:8px 10px;border-radius:var(--radius-sm);border:0.5px solid var(--border)">
+       <div style="font-size:10px;font-family:var(--mono);color:var(--txt3);margin-bottom:4px">${l} (${units[i]})</div>
+       <input class="settings-input" type="number" id="thr${i}" value="${PILLAR_CFG[i].threshold}" style="width:100%;padding:5px 8px">
+     </div>`
+  ).join('');
+  document.getElementById('fullResetConfirm').classList.remove('show');
+  document.getElementById('settingsModal').classList.add('open');
+}
+
+function closeSettings() {
+  document.getElementById('settingsModal').classList.remove('open');
+}
+
+function applyArcSettings() {
+  const s = loadSettings();
+  s.arcStart   = document.getElementById('settingsArcDate').value  || s.arcStart;
+  s.playerName = document.getElementById('settingsPlayerName').value.trim() || s.playerName;
+  s.arcDays    = parseInt(document.getElementById('settingsArcDays').value) || s.arcDays;
+  saveSettings(s);
+  applyArcToUI(s);
+  showXpFlash('Settings saved');
+  closeSettings();
+}
+
+function applyThresholds() {
+  const s = loadSettings();
+  s.thresholds = PILLAR_CFG.map((_,i) => parseInt(document.getElementById('thr'+i).value) || PILLAR_CFG[i].threshold);
+  s.thresholds.forEach((v,i) => { PILLAR_CFG[i].threshold = v; });
+  saveSettings(s);
+  showXpFlash('Thresholds updated');
+  closeSettings();
+}
+
+function resetTodayPillars() {
+  for(let i=0;i<6;i++){
+    pillars[i]=false; pillarValues[i]=0;
+    const tile=document.getElementById('pt'+i);
+    tile.classList.remove('done');
+    tile.style.borderColor=''; tile.querySelector('.ptile-name').style.color='';
+    tile.querySelector('.ptile-icon').textContent='○';
+    const pip=document.getElementById('p'+i);
+    pip.classList.replace('pip-on','pip-off');
+  }
+  updatePillarSummary();
+  showXpFlash('Pillars reset');
+  closeSettings();
+}
+
+function resetTodaySessions() {
+  dwSessions = [];
+  renderSavedSessions();
+  showXpFlash('Sessions reset');
+  closeSettings();
+}
+
+function showFullReset() { document.getElementById('fullResetConfirm').classList.add('show'); }
+function hideFullReset()  { document.getElementById('fullResetConfirm').classList.remove('show'); }
+
+function doFullReset() {
+  localStorage.removeItem(SETTINGS_KEY);
+  resetTodayPillars();
+  resetTodaySessions();
+  const defaults = loadSettings();
+  applyArcToUI(defaults);
+  showXpFlash('All data reset');
+  closeSettings();
+}
+
+// Apply on load
+applyArcToUI(loadSettings());
+
+// ── Heatmap ──
 const hmData = [1,0,1,3,1,1,0,...Array(83).fill(0)];
 const hmGrid = document.getElementById('hmGrid');
-hmData.forEach(v => {
-  const d = document.createElement('div');
-  d.className = 'hm-cell hm'+v;
-  hmGrid.appendChild(d);
-});
+hmData.forEach(v=>{ const d=document.createElement('div'); d.className='hm-cell hm'+v; hmGrid.appendChild(d); });
 
-window.addEventListener('load', () => {
-  donutChart = new Chart(document.getElementById('donutChart'), {
-    type: 'doughnut',
-    data: {
-      datasets: [{
-        data: [0, 6],
-        backgroundColor: ['#1D9E75', '#202024'],
-        borderWidth: 0,
-        borderRadius: 4
-      }]
-    },
-    options: {
-      cutout: '72%',
-      plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      animation: { animateRotate: true }
-    }
+// ── Charts ──
+window.addEventListener('load', ()=>{
+  donutChart = new Chart(document.getElementById('donutChart'),{
+    type:'doughnut',
+    data:{ datasets:[{ data:[0,6], backgroundColor:['#1D9E75','#202024'], borderWidth:0, borderRadius:4 }] },
+    options:{ cutout:'72%', plugins:{legend:{display:false},tooltip:{enabled:false}}, animation:{animateRotate:true} }
   });
 
-  new Chart(document.getElementById('xpBar'), {
-    type: 'bar',
-    data: {
-      labels: ['D1','D2','D3','D4','D5','D6','D7'],
-      datasets: [{
-        data: [720, 0, 330, 2710, 480, 360, 0],
-        backgroundColor: ['#E24B4A','#E24B4A','#E24B4A','#1D9E75','#E24B4A','#E24B4A','rgba(255,255,255,0.06)'],
-        borderRadius: 4,
-        borderWidth: 0
+  const xpCtx = document.getElementById('xpBar').getContext('2d');
+  const xpGrad = xpCtx.createLinearGradient(0,0,0,160);
+  xpGrad.addColorStop(0,'rgba(29,158,117,0.35)');
+  xpGrad.addColorStop(1,'rgba(29,158,117,0.02)');
+  new Chart(xpCtx,{
+    type:'line',
+    data:{
+      labels:['D1','D2','D3','D4','D5','D6','D7'],
+      datasets:[{
+        data:[720,0,330,2710,480,360,0],
+        fill:true,
+        backgroundColor:xpGrad,
+        borderColor:'#1D9E75',
+        borderWidth:2,
+        pointBackgroundColor:['#E24B4A','#E24B4A','#E24B4A','#1D9E75','#E24B4A','#E24B4A','rgba(255,255,255,0.2)'],
+        pointBorderColor:'transparent',
+        pointRadius:4,
+        pointHoverRadius:6,
+        tension:0.4
       }]
     },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks: { color: '#55555c', font: { size: 10, family: "'DM Mono'" } }, grid: { display: false }, border: { display: false } },
-        y: { ticks: { color: '#55555c', font: { size: 10, family: "'DM Mono'" }, callback: v => v >= 1000 ? Math.round(v/1000)+'k' : v }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } }
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{
+        backgroundColor:'#1a1a1d',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,
+        titleColor:'#8a8a90',bodyColor:'#f0f0f0',
+        titleFont:{family:"'DM Mono'",size:10},bodyFont:{family:"'DM Mono'",size:12},
+        callbacks:{label:ctx=>'  '+ctx.parsed.y+' XP'}
+      }},
+      scales:{
+        x:{ticks:{color:'#55555c',font:{size:10,family:"'DM Mono'"}},grid:{display:false},border:{display:false}},
+        y:{ticks:{color:'#55555c',font:{size:10,family:"'DM Mono'"},callback:v=>v>=1000?Math.round(v/1000)+'k':v},grid:{color:'rgba(255,255,255,0.04)'},border:{display:false}}
       }
     }
   });
 
-  new Chart(document.getElementById('statBar'), {
-    type: 'bar',
-    data: {
-      labels: ['Willpower','Intelligence','Skills','Strength','Vitality'],
-      datasets: [{
-        data: [7, 5, 5, 3, 1],
-        backgroundColor: ['#EF9F27','#7F77DD','#378ADD','#1D9E75','#E24B4A'],
-        borderRadius: 4,
-        borderWidth: 0,
-        barThickness: 14
-      }]
+  new Chart(document.getElementById('statBar'),{
+    type:'bar',
+    data:{
+      labels:['Willpower','Intelligence','Skills','Strength','Vitality'],
+      datasets:[{ data:[7,5,5,3,1],
+        backgroundColor:['#EF9F27','#7F77DD','#378ADD','#1D9E75','#E24B4A'],
+        borderRadius:4, borderWidth:0, barThickness:14 }]
     },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { max: 20, ticks: { color: '#55555c', font: { size: 10, family: "'DM Mono'" } }, grid: { color: 'rgba(255,255,255,0.04)' }, border: { display: false } },
-        y: { ticks: { color: '#8a8a90', font: { size: 11, family: "'DM Sans'" } }, grid: { display: false }, border: { display: false } }
+    options:{
+      indexAxis:'y', responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{max:20,ticks:{color:'#55555c',font:{size:10,family:"'DM Mono'"}},grid:{color:'rgba(255,255,255,0.04)'},border:{display:false}},
+        y:{ticks:{color:'#8a8a90',font:{size:11,family:"'DM Sans'"}},grid:{display:false},border:{display:false}}
       }
     }
   });
 });
 </script>
+
+<!-- Settings Modal -->
+<div class="dw-modal-overlay" id="settingsModal">
+  <div class="dw-modal" style="max-width:440px">
+    <div class="dw-modal-header">
+      <div class="dw-modal-title">&#9881; Settings</div>
+      <div class="dw-modal-close" onclick="closeSettings()">&#10005;</div>
+    </div>
+
+    <!-- Arc start date -->
+    <div class="settings-section">
+      <div class="settings-section-title">Arc Configuration</div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Arc start date</div>
+          <div class="settings-desc">Recalculates current day + phase</div>
+        </div>
+        <input class="settings-input" type="date" id="settingsArcDate">
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Player name</div>
+        </div>
+        <input class="settings-input" type="text" id="settingsPlayerName" style="width:140px">
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Total arc days</div>
+          <div class="settings-desc">Default 720</div>
+        </div>
+        <input class="settings-input" type="number" id="settingsArcDays" style="width:80px" min="1" max="9999">
+      </div>
+      <div style="margin-top:10px">
+        <button class="settings-btn settings-btn-green" onclick="applyArcSettings()" style="width:100%">&#10003; Apply Changes</button>
+      </div>
+    </div>
+
+    <!-- Pillar thresholds -->
+    <div class="settings-section">
+      <div class="settings-section-title">Pillar Thresholds (Month 2)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px" id="pillarThresholdGrid"></div>
+      <div style="margin-top:10px">
+        <button class="settings-btn settings-btn-green" onclick="applyThresholds()" style="width:100%">&#10003; Save Thresholds</button>
+      </div>
+    </div>
+
+    <!-- Reset -->
+    <div class="settings-section">
+      <div class="settings-section-title">Data Management</div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Reset today's pillars</div>
+          <div class="settings-desc">Clears today's logged values</div>
+        </div>
+        <button class="settings-btn settings-btn-amber" onclick="resetTodayPillars()">Reset Pillars</button>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Reset today's sessions</div>
+          <div class="settings-desc">Removes all deep work sessions</div>
+        </div>
+        <button class="settings-btn settings-btn-amber" onclick="resetTodaySessions()">Reset Sessions</button>
+      </div>
+      <div class="settings-row">
+        <div>
+          <div class="settings-label">Full data reset</div>
+          <div class="settings-desc">Wipes all saved state — irreversible</div>
+        </div>
+        <button class="settings-btn settings-btn-red" onclick="showFullReset()">Reset All</button>
+      </div>
+      <div class="settings-confirm" id="fullResetConfirm">
+        <div style="margin-bottom:8px">&#9888; This will clear all saved data. Are you sure?</div>
+        <div style="display:flex;gap:8px">
+          <button class="settings-btn settings-btn-red" style="flex:1" onclick="doFullReset()">Yes, reset everything</button>
+          <button class="settings-btn" style="flex:1;background:var(--surface2);color:var(--txt2);border:0.5px solid var(--border)" onclick="hideFullReset()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>
