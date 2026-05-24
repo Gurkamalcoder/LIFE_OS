@@ -170,8 +170,25 @@ body{
     <div class="hdr-title">Omnipotence Framework</div>
     <div class="hdr-sub">WHITE ROOM EVOLUTION SYSTEM &mdash; 720-DAY ARC</div>
   </div>
-  <span class="day-badge" id="dayBadge">Day 1 / 720</span>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span class="day-badge" id="dayBadge">Day 1 / 720</span>
+    <button class="btn-g" onclick="openSettingsDialog()" style="padding:3px 8px;font-size:10px;" title="Settings">⚙</button>
+  </div>
 </div>
+
+<!-- Timer Bar -->
+<div id="timerBar" style="display:none;background:var(--bg2);border:1px solid var(--green-lit);padding:8px 12px;margin-bottom:10px;align-items:center;gap:10px;">
+  <div style="display:flex;align-items:center;gap:8px;flex:1;">
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--green-lit);animation:xppulse 1s infinite;"></div>
+    <div style="font-size:10px;color:var(--txt);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" id="timerTask">Session running...</div>
+    <div style="font-size:16px;color:var(--green-lit);font-weight:700;letter-spacing:2px;flex-shrink:0;min-width:70px;text-align:right;" id="timerCount">00:00</div>
+  </div>
+  <button class="btn-g" onclick="openStopSessionModal()" style="color:var(--danger-lit);border-color:var(--danger);">STOP</button>
+</div>
+
+<style>
+@keyframes xppulse{0%,100%{opacity:1}50%{opacity:.3}}
+</style>
 
 <div class="stat-grid">
   <div class="stat-card accent">
@@ -248,7 +265,8 @@ body{
       <button class="btn-p" onclick="openStartSessionModal('Afternoon')" style="padding:6px;font-size:8px;">⏱ AFTERNOON</button>
       <button class="btn-p" onclick="openStartSessionModal('Night')" style="padding:6px;font-size:8px;">⏱ NIGHT</button>
       <button class="btn-g" onclick="S.running_session?openStopSessionModal():toast('No active session')" style="padding:6px;font-size:8px;">⊓ STOP</button>
-      <button class="btn-p" onclick="openSummaryDialog()" style="padding:6px;font-size:8px;grid-column:span 2;">📋 SUMMARY</button>
+      <button class="btn-p" onclick="openSummaryDialog()" style="padding:6px;font-size:8px;">📋 SUMMARY</button>
+      <button class="btn-g" onclick="openQuestsDialog()" style="padding:6px;font-size:8px;">🏹 QUESTS</button>
     </div>
   </div>
 
@@ -480,6 +498,18 @@ body{
   </div>
 </div>
 
+<!-- Quests Modal -->
+<div class="modal-overlay" id="modalQuests">
+  <div class="modal" style="background:var(--bg2);border:1px solid var(--border2);max-width:500px;padding:20px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);font-weight:700;">Daily Quests</div>
+      <div onclick="closeModal('modalQuests')" style="font-size:20px;color:var(--muted);cursor:pointer;">✕</div>
+    </div>
+    <div id="questList" style="margin-bottom:14px;"></div>
+    <div style="font-size:9px;color:var(--muted);letter-spacing:0.06em;">Click a quest to toggle completion. Completed quests award XP to their stat.</div>
+  </div>
+</div>
+
 <!-- Markdown Viewer -->
 <div id="md-viewer" style="position:fixed;inset:0;z-index:700;background:var(--bg);display:none;flex-direction:column;">
   <div style="height:60px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:12px;flex-shrink:0;">
@@ -571,22 +601,22 @@ async function startSession(){
 
 function startTimerUI(session){
   const bar=document.getElementById('timerBar');
-  if(!bar)return; // timer bar not in dashboard
-  document.documentElement.style.setProperty('--timer-h','46px');
+  if(!bar)return;
+  bar.style.display='flex';
+  document.getElementById('timerTask').textContent=`${session.slot||''} — ${session.task||'Working'}`;
   if(timerInterval)clearInterval(timerInterval);
   timerInterval=setInterval(()=>{
     const elapsed=Math.floor((Date.now()-new Date(session.start_time).getTime())/1000);
     const m=Math.floor(elapsed/60),s=elapsed%60;
-    const dur=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-    // Update anywhere timer display exists
-    const tc=document.getElementById('timerCount');
-    if(tc)tc.textContent=dur;
+    document.getElementById('timerCount').textContent=
+      `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
   },1000);
 }
 
 function stopTimerUI(){
+  const bar=document.getElementById('timerBar');
+  if(bar)bar.style.display='none';
   if(timerInterval){clearInterval(timerInterval);timerInterval=null;}
-  document.documentElement.style.setProperty('--timer-h','0px');
 }
 
 async function stopSession(){
@@ -627,31 +657,6 @@ async function cancelSession(){
 // ════════════════════════════════════════════════════════
 //  PILLAR MANAGEMENT
 // ════════════════════════════════════════════════════════
-async function togglePillar(i){
-  const pillar=pillarsData[i];
-  if(!pillar)return;
-  let amount=pillar.base||100;
-  if(pillar.name==='Meditation')amount=60;
-  if(pillar.name==='Reading')amount=5;
-  
-  const result=await apiCall('/api/pillar/log','POST',{name:pillar.name,amount});
-  if(result && result.ok){
-    state.pillars[i]=true;
-    state.totalXP+=result.xp||0;
-    state.todayXP+=result.xp||0;
-    if(result.stats)state.stats=result.stats;
-    updatePillarStat();
-    updateHeader();
-    showXpFlash(`+${result.xp} XP`);
-    renderPillars();
-  }
-}
-
-async function markAllPillars(){
-  const missing=state.pillars.map((p,i)=>({p,i})).filter(x=>!x.p).map(x=>x.i);
-  for(const i of missing){await togglePillar(i);await new Promise(r=>setTimeout(r,100));}
-}
-
 function openPillarModal(p){
   activePillar=p;
   const name=p.name||p;
@@ -822,8 +827,18 @@ function copyMd(){
 }
 
 // ════════════════════════════════════════════════════════
-//  SUBMIT ACTIVITY (unified logging)
+//  LOCAL XP LOG
 // ════════════════════════════════════════════════════════
+let xpLogs=[];
+try{
+  const stored=sessionStorage.getItem('dash_xp_logs');
+  if(stored)xpLogs=JSON.parse(stored);
+}catch(e){}
+
+function saveXpLogs(){
+  try{sessionStorage.setItem('dash_xp_logs',JSON.stringify(xpLogs.slice(-100)));}catch(e){}
+}
+
 // ════════════════════════════════════════════════════════
 //  MODAL TRIGGERS & UI BINDINGS
 // ════════════════════════════════════════════════════════
@@ -869,6 +884,36 @@ function openSettingsDialog(){
   document.getElementById('settingName').value=S.player.name||'Ryuji';
   openModal('modalSettings');
 }
+
+// ════════════════════════════════════════════════════════
+//  QUESTS
+// ════════════════════════════════════════════════════════
+async function openQuestsDialog(){
+  const quests=await apiCall('/api/quests');
+  if(!quests)return;
+  const list=document.getElementById('questList');
+  list.innerHTML=quests.map((q,i)=>`
+    <div onclick="toggleQuest(${i})" style="display:flex;align-items:center;gap:8px;padding:7px 8px;margin-bottom:2px;background:${q.done?'rgba(42,155,101,0.08)':'var(--bg)'};border-left:2px solid ${q.done?'var(--green-lit)':'var(--border2)'};cursor:pointer;">
+      <div style="width:16px;height:16px;border:1px solid ${q.done?'var(--green-lit)':'var(--border2)'};display:flex;align-items:center;justify-content:center;flex-shrink:0;background:${q.done?'var(--green-lit)':'transparent'};">
+        ${q.done?'<span style="font-size:10px;">✓</span>':''}
+      </div>
+      <div style="flex:1;">
+        <div style="font-size:10px;color:${q.done?'var(--green-lit)':'var(--txt)'};letter-spacing:0.04em;">${q.name}</div>
+        <div style="font-size:8px;color:var(--muted);">+${q.xp} XP → ${q.stat}${q.done?' · DONE':''}</div>
+      </div>
+    </div>
+  `).join('');
+  openModal('modalQuests');
+}
+
+async function toggleQuest(i){
+  const d=await apiCall('/api/quest/toggle','POST',{index:i});
+  if(d&&d.ok){
+    toast(d.quests[i]?.done?'✓ Quest completed!':'Quest marked incomplete');
+    await loadInitialState();
+    openQuestsDialog();
+  }
+}
 const phases=[
   {name:'Stabilization',color:'#C8A84B',focus:'Sleep, routine, dopamine control, attention'},
   {name:'Physical Dominance',color:'#8B9E4A',focus:'Strength, cardio, nutrition, mobility'},
@@ -900,85 +945,16 @@ const pillarsData=[
   {name:'Reading',icon:'ti-book',fixed:true,val:'5 pages'}
 ];
 
-const statsData=[
-  {name:'Strength',icon:'ti-barbell',color:'#C8A84B',lv:1,xp:0,cap:'Workouts'},
-  {name:'Vitality',icon:'ti-heart',color:'#8B9E4A',lv:1,xp:0,cap:'Cardio/Sleep'},
-  {name:'Skills',icon:'ti-code',color:'#7A9EAF',lv:1,xp:0,cap:'Coding/Social'},
-  {name:'Intelligence',icon:'ti-brain',color:'#AF7A9E',lv:1,xp:0,cap:'Deep Work'},
-  {name:'Willpower',icon:'ti-flame',color:'#C88B4B',lv:1,xp:0,cap:'Discipline'}
-];
+let activePhaseIdx=0;
 
-let state={
-  day:1,month:1,
-  totalXP:0,todayXP:0,
-  streak:0,
-  pillars:[false,false,false,false,false,false],
-  logs:[],
-  xpLog:[],
-  stats:statsData.map(s=>({...s})),
-  activePhase:0,
-  heatmap:Array.from({length:90},()=>Math.floor(Math.random()*5))
-};
 
-// ────────────────────────────────────────────────────────────────────────
-// API HELPERS
-// ────────────────────────────────────────────────────────────────────────
-async function apiCall(endpoint, method='GET', body=null){
-  try{
-    const opts={method, headers:{'Content-Type':'application/json'}};
-    if(body) opts.body=JSON.stringify(body);
-    const res=await fetch(endpoint,opts);
-    if(!res.ok) console.error(`API ${res.status}:`,res.statusText);
-    const data=await res.json();
-    return data;
-  }catch(e){
-    console.error('API error:',e);
-    return null;
-  }
-}
-
-async function loadInitialState(){
-  try{
-    const data=await apiCall('/api/status');
-    if(data){
-      state.day=data.day||1;
-      state.totalXP=data.player.xp||0;
-      state.streak=data.streak||0;
-      
-      // Load stats from backend
-      if(data.stats){
-        Object.keys(data.stats).forEach(name=>{
-          const s=state.stats.find(st=>st.name===name);
-          if(s && data.stats[name]){
-            s.lv=data.stats[name].level||1;
-            s.xp=data.stats[name].xp||0;
-          }
-        });
-      }
-      
-      // Load pillars status
-      const pillars=await apiCall('/api/pillars');
-      if(pillars){
-        state.pillars=[false,false,false,false,false,false];
-        pillars.forEach(p=>{
-          const idx=pillarsData.findIndex(pd=>pd.name===p.name);
-          if(idx>=0) state.pillars[idx]=true;
-        });
-      }
-    }
-  }catch(e){
-    console.error('loadInitialState error:',e);
-  }finally{
-    updateAllUI();
-  }
-}
 
 // ────────────────────────────────────────────────────────────────────────
 // UI UPDATES
 // ────────────────────────────────────────────────────────────────────────
 
-function getCurrentPhase(){return Math.min(Math.floor((state.day-1)/90),7);}
-function getMonth(){return Math.ceil(state.day/30);}
+function getCurrentPhase(){return Math.min(Math.floor((S.day-1)/90),7);}
+function getMonth(){return Math.ceil(S.day/30);}
 function getPillarTarget(idx){
   if(idx>=4) return pillarsData[idx].val;
   return(100+(getMonth()-1)*10)+' reps';
@@ -989,9 +965,9 @@ function renderPhases(){
   const phase=getCurrentPhase();
   list.innerHTML=phases.map((p,i)=>{
     const status=i<phase?'done':i===phase?'active':'locked';
-    const pct=i<phase?100:i===phase?Math.round(((state.day-1)%90)/90*100):0;
+    const pct=i<phase?100:i===phase?Math.round(((S.day-1)%90)/90*100):0;
     const statusLabel=status==='done'?'DONE':status==='active'?'ACTIVE':'LOCKED';
-    return`<div class="phase-row ${i===state.activePhase?'active':''}" onclick="selectPhase(${i})">
+    return`<div class="phase-row ${i===activePhaseIdx?'active':''}" onclick="selectPhase(${i})">
       <span class="phase-num">${i+1}</span>
       <span class="phase-name" style="color:${i<=phase?p.color:'#555555'};">${p.name}</span>
       <div class="phase-prog">
@@ -1004,7 +980,7 @@ function renderPhases(){
 }
 
 function selectPhase(i){
-  state.activePhase=i;
+  activePhaseIdx=i;
   document.querySelectorAll('.phase-row').forEach((r,idx)=>r.classList.toggle('active',idx===i));
   document.querySelectorAll('.phase-detail').forEach(d=>d.classList.remove('show'));
   let box=document.getElementById('pdetail-'+i);
@@ -1022,10 +998,12 @@ function selectPhase(i){
 
 function renderPillars(){
   const grid=document.getElementById('pillarsGrid');
+  const month=getMonth();
   grid.innerHTML=pillarsData.map((p,i)=>{
     const entries=S.pillars_today.filter(e=>e.name===p.name);
     const amount=entries.reduce((a,b)=>a+(b.amount||0),0);
-    const target=p.base||p.val||100;
+    const parsed=p.val?parseInt(p.val):null;
+    const target=p.base?100+(month-1)*10:(parsed||100);
     const done=amount>=target;
     return `<div class="pillar" style="cursor:pointer;border:1px solid ${done?'var(--green-lit)':'var(--border)'};" onclick="openPillarLogModal('${p.name}')">
       <div class="pillar-left">
@@ -1046,44 +1024,39 @@ function renderPillars(){
 async function togglePillar(i){
   const pillar=pillarsData[i];
   if(!pillar) return;
+  const month=getMonth();
+  let amount=pillar.base?100+(month-1)*10:(parseInt(pillar.val)||100);
   
-  // For fixed pillars (Meditation, Reading), log their default values
-  let amount=pillar.base||100;
-  if(pillar.name==='Meditation') amount=60;
-  if(pillar.name==='Reading') amount=5;
-  
-  const result=await apiCall('/api/pillar/log',  'POST',{name:pillar.name, amount});
+  const result=await apiCall('/api/pillar/log','POST',{name:pillar.name,amount});
   if(result && result.ok){
-    state.pillars[i]=true;
-    state.totalXP+=result.xp||0;
-    state.todayXP+=result.xp||0;
-    
-    // Update stats from response
-    if(result.stats){
-      Object.keys(result.stats).forEach(name=>{
-        const s=state.stats.find(st=>st.name===name);
-        if(s && result.stats[name]){
-          s.lv=result.stats[name].level;
-          s.xp=result.stats[name].xp;
-        }
-      });
-    }
-    
-    renderPillars();
-    updateHeader();
-    renderStats();
+    showXpFlash(`+${result.xp} XP`);
+    await loadInitialState();
+    toast(`✓ ${pillar.name} · +${result.xp} XP`);
   }
 }
 
 async function markAllPillars(){
-  const missing=state.pillars.map((p,i)=>({p,i})).filter(x=>!x.p).map(x=>x.i);
+  const month=getMonth();
+  const missing=pillarsData.map((p,i)=>({p,i})).filter(x=>{
+    const entries=S.pillars_today.filter(e=>e.name===x.p.name);
+    const amt=entries.reduce((a,b)=>a+(b.amount||0),0);
+    const parsed=x.p.val?parseInt(x.p.val):null;
+    const target=x.p.base?100+(month-1)*10:(parsed||100);
+    return amt<target;
+  }).map(x=>x.i);
   for(const i of missing){
     await togglePillar(i);
   }
 }
 
 function updatePillarStat(){
-  const done=S.pillars_today.filter(p=>p).length||0;
+  const month=getMonth();
+  const done=pillarsData.filter(p=>{
+    const entries=S.pillars_today.filter(e=>e.name===p.name);
+    const amt=entries.reduce((a,b)=>a+(b.amount||0),0);
+    const target=p.base?100+(month-1)*10:(parseInt(p.val)||100);
+    return amt>=target;
+  }).length;
   const target=6;
   document.getElementById('pillarsVal').textContent=done+'/'+target;
   const pct=Math.round(done/target*100);
@@ -1094,29 +1067,34 @@ function updatePillarStat(){
 
 function renderStats(){
   const rows=document.getElementById('statsRows');
-  rows.innerHTML=state.stats.map(s=>{
-    const pct=Math.round((s.xp%1000)/10);
-    return`<div class="stat-row2" style="border-left-color:${s.color};">
+  const statOrder=['Strength','Vitality','Skills','Intelligence','Willpower'];
+  const statColors={Strength:'#C8A84B',Vitality:'#8B9E4A',Skills:'#7A9EAF',Intelligence:'#AF7A9E',Willpower:'#C88B4B'};
+  const statIcons={Strength:'ti-barbell',Vitality:'ti-heart',Skills:'ti-code',Intelligence:'ti-brain',Willpower:'ti-flame'};
+  rows.innerHTML=statOrder.map(name=>{
+    const s=S.stats[name]||{level:1,xp:0,xp_required:1000};
+    const pct=Math.min(100,(s.xp/Math.max(1,s.xp_required||1000))*100);
+    const color=statColors[name];
+    return`<div class="stat-row2" style="border-left-color:${color};">
       <div class="stat-row2-top">
         <div style="display:flex;align-items:center;gap:5px;">
-          <i class="ti ${s.icon}" style="font-size:12px;color:${s.color};" aria-hidden="true"></i>
-          <span class="stat-row2-name">${s.name}</span>
+          <i class="ti ${statIcons[name]}" style="font-size:12px;color:${color};" aria-hidden="true"></i>
+          <span class="stat-row2-name">${name}</span>
         </div>
-        <span class="stat-row2-lv" style="color:${s.color};">LV.${s.lv}</span>
+        <span class="stat-row2-lv" style="color:${color};">LV.${s.level}</span>
       </div>
-      <div class="stat-row2-bar"><div style="height:100%;width:${pct}%;background:${s.color};"></div></div>
-      <div class="stat-row2-sub">${s.xp%1000}/1000 xp</div>
+      <div class="stat-row2-bar"><div style="height:100%;width:${pct}%;background:${color};"></div></div>
+      <div class="stat-row2-sub">${s.xp}/${s.xp_required||1000} xp</div>
     </div>`;
   }).join('');
 }
 
 function renderXPLog(){
   const rows=document.getElementById('xpLogRows');
-  if(state.xpLog.length===0){
+  if(xpLogs.length===0){
     rows.innerHTML=`<div style="font-size:10px;color:var(--muted);padding:6px 0;letter-spacing:0.06em;">No XP logged. Use buttons below.</div>`;
     return;
   }
-  rows.innerHTML=state.xpLog.slice(-5).reverse().map(x=>`
+  rows.innerHTML=xpLogs.slice(-5).reverse().map(x=>`
     <div class="xp-log-row">
       <span class="xp-log-action">${x.action}</span>
       <span class="xp-log-pts">+${x.xp}</span>
@@ -1124,46 +1102,51 @@ function renderXPLog(){
 }
 
 async function logXP(action,xp,statName){
-  state.totalXP+=xp;
-  state.todayXP+=xp;
-  state.xpLog.push({action,xp,stat:statName,time:new Date().toLocaleTimeString()});
-  
-  const s=state.stats.find(st=>st.name===statName);
-  if(s){
-    s.xp+=xp;
-    s.lv=1+Math.floor(s.xp/1000);
-  }
-  
-  renderXPLog();
-  renderStats();
-  updateHeader();
-  if(statChart){
-    statChart.data.datasets[0].data=state.stats.map(s=>s.lv);
-    statChart.update();
+  const d=await apiCall('/api/log/custom','POST',{name:action,stat:statName,xp});
+  if(d){
+    xpLogs.push({action,xp,stat:statName,time:new Date().toLocaleTimeString()});
+    saveXpLogs();
+    showXpFlash(`+${xp} XP`);
+    await loadInitialState();
   }
 }
 
 function updateHeader(){
   const phase=getCurrentPhase();
-  document.getElementById('dayBadge').textContent=`Day ${state.day} / 720`;
-  document.getElementById('totalXP').textContent=state.totalXP.toLocaleString();
+  document.getElementById('dayBadge').textContent=`Day ${S.day} / 720`;
+  document.getElementById('totalXP').textContent=(S.player.xp||0).toLocaleString();
   document.getElementById('curPhase').textContent=phase+1;
   document.getElementById('phaseName').textContent=phases[phase].name;
-  document.getElementById('phaseBar').style.width=Math.round(((state.day-1)%90)/90*100)+'%';
-  document.getElementById('streakVal').textContent=state.streak;
-  document.getElementById('streakBar').style.width=Math.min(state.streak/30*100,100)+'%';
-  document.getElementById('xpBarTop').style.width=Math.min(state.totalXP/720000*100,100)+'%';
+  document.getElementById('phaseBar').style.width=Math.round(((S.day-1)%90)/90*100)+'%';
+  document.getElementById('streakVal').textContent=S.streak;
+  document.getElementById('streakBar').style.width=Math.min(S.streak/30*100,100)+'%';
+  document.getElementById('xpBarTop').style.width=Math.min((S.player.xp||0)/720000*100,100)+'%';
   const m=getMonth();
   document.getElementById('pushTarget').textContent=100+(m-1)*10;
   document.getElementById('monthLabel').textContent='Month '+m;
-  document.getElementById('ascName').textContent=`Phase ${phase+1} — ${['Stability Lockdown','Physical Endurance','Cognitive Overload','Social Adaptation','Emotional Pressure','Architect Protocol','Silent Integration','Apex Protocol'][phase]}`;
-  const daysLeft=90-((state.day-1)%90)-1;
+  const phaseNames=['Stability Lockdown','Physical Endurance','Cognitive Overload','Social Adaptation','Emotional Pressure','Architect Protocol','Silent Integration','Apex Protocol'];
+  document.getElementById('ascName').textContent=`Phase ${phase+1} — ${phaseNames[phase]}`;
+  const daysLeft=90-((S.day-1)%90)-1;
   document.getElementById('ascDays').textContent=daysLeft;
 }
 
 function renderHeatmap(){
   const row=document.getElementById('heatmapRow');
-  row.innerHTML=state.heatmap.map(v=>`<div class="hm-cell hm-${v}" title="${v} pillars done"></div>`).join('');
+  const today=new Date();
+  const heat=Array.from({length:90},(_,i)=>{
+    const d=new Date(today);d.setDate(d.getDate()-(89-i));
+    const dayStr=d.toISOString().slice(0,10);
+    let intensity=0;
+    if(i>80&&S.streak>0){
+      const daysBack=89-i;
+      if(daysBack<S.streak)intensity=Math.min(Math.ceil((S.streak-daysBack)/7),4);
+    }else{
+      const seed=S.day-(89-i);
+      intensity=seed>0?seed%5:0;
+    }
+    return `<div class="hm-cell hm-${intensity}" title="${dayStr}"></div>`;
+  }).join('');
+  row.innerHTML=heat;
 }
 
 const days=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
@@ -1181,19 +1164,30 @@ function renderWeek(){
   }).join('');
 }
 
+let localLogs=[];
+try{
+  const stored=sessionStorage.getItem('dash_logs');
+  if(stored)localLogs=JSON.parse(stored);
+}catch(e){}
+
+function saveLocalLogs(){
+  try{sessionStorage.setItem('dash_logs',JSON.stringify(localLogs.slice(-50)));}catch(e){}
+}
+
 function addLog(){
   const inp=document.getElementById('logInput');
   const txt=inp.value.trim();
   if(!txt)return;
   const time=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  state.logs.unshift({text:txt,time});
+  localLogs.unshift({text:txt,time});
+  saveLocalLogs();
   inp.value='';
   renderLogs();
 }
 
 function renderLogs(){
   const el=document.getElementById('logEntries');
-  el.innerHTML=state.logs.slice(0,4).map(l=>`
+  el.innerHTML=localLogs.slice(0,4).map(l=>`
     <div class="log-row">
       <span class="log-txt">${l.text}</span>
       <span class="log-time">${l.time}</span>
@@ -1209,6 +1203,26 @@ function updateAllUI(){
   renderWeek();
   renderLogs();
   updateHeader();
+  if(statChart){
+    const chartOrder=['Strength','Vitality','Skills','Intelligence','Willpower'];
+    statChart.data.datasets[0].data=chartOrder.map(n=>S.stats[n]?.level||1);
+    statChart.update();
+  }
+}
+
+async function loadTodayLogs(){
+  const h=await apiCall('/api/history');
+  if(h&&h.logs){
+    const todayStr=new Date().toISOString().slice(0,10);
+    xpLogs=h.logs.filter(l=>l.date===todayStr&&l.type!=='pillar').map(l=>({
+      action:l.name||l.type||'log',
+      xp:l.xp||0,
+      stat:l.stat||'',
+      time:l.timestamp||''
+    }));
+    saveXpLogs();
+    renderXPLog();
+  }
 }
 
 let statChart=null;
@@ -1241,7 +1255,7 @@ function initCharts(){
       labels:['STR','VIT','SKL','INT','WIL'],
       datasets:[{
         label:'Level',
-        data:state.stats.map(s=>s.lv),
+        data:(()=>{const o=['Strength','Vitality','Skills','Intelligence','Willpower'];return o.map(n=>S.stats[n]?.level||1);})(),
         backgroundColor:['#C8A84B','#8B9E4A','#7A9EAF','#AF7A9E','#C88B4B'],
         borderRadius:0,borderWidth:0,barThickness:18
       }]
@@ -1287,23 +1301,12 @@ window.addEventListener('load',async ()=>{
   initCharts();
   // Set first phase active
   selectPhase(0);
+  // Load today's logs
+  loadTodayLogs();
   // Setup input listeners
   if(document.getElementById('logInput')){
     document.getElementById('logInput').addEventListener('keydown',e=>{if(e.key==='Enter')addLog();});
   }
-  // Add open session button handler
-  const openSessionBtn=document.querySelector('[onclick*="openStartModal"]');
-  if(openSessionBtn){
-    openSessionBtn.addEventListener('click',()=>openStartModal('Morning'));
-  }
-  // Add pillar quick-log handlers
-  const pillars=document.querySelectorAll('[id^="pillar-"]');
-  pillars.forEach((p,i)=>{
-    p.addEventListener('click',()=>{
-      const pdata=pillarsData[i];
-      if(pdata)openPillarModal(pdata);
-    });
-  });
 });
 </script>
 </body>
