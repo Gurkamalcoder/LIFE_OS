@@ -508,6 +508,113 @@
   .settings-btn-amber:hover { background: rgba(239,159,39,0.18); }
   .settings-confirm { display:none; padding: 10px 14px; background: rgba(226,75,74,0.08); border: 0.5px solid rgba(226,75,74,0.3); border-radius: var(--radius-sm); font-size: 12px; color: var(--red); margin-top: 8px; }
   .settings-confirm.show { display: block; }
+
+  /* ══ FULL VIEWPORT + RESPONSIVE ══ */
+  html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body {
+    padding: 16px;
+  }
+
+  .dashboard {
+    width: 100%;
+    max-width: 1280px;
+  }
+
+  /* ── Tablet: 768–1024px ── */
+  @media (max-width: 1024px) {
+    .grid-4    { grid-template-columns: repeat(2, 1fr); }
+    .grid-main { grid-template-columns: 1fr; }
+    .grid-bot  { grid-template-columns: 1fr; }
+    .grid-3    { grid-template-columns: 1fr 1fr; }
+    .grid-2    { grid-template-columns: 1fr; }
+    .scroll-y  { max-height: none; }
+  }
+
+  /* ── Mobile: ≤640px ── */
+  @media (max-width: 640px) {
+    body { padding: 10px; }
+
+    .dashboard { gap: 8px; }
+
+    .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+    }
+    .topbar-right {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .topbar-right button { flex: 1; justify-content: center; }
+
+    .grid-4    { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .grid-3    { grid-template-columns: 1fr; }
+    .grid-2    { grid-template-columns: 1fr; }
+    .grid-main { grid-template-columns: 1fr; }
+    .grid-bot  { grid-template-columns: 1fr; }
+
+    .card     { padding: 14px; }
+    .card-sm  { padding: 12px; }
+
+    .mcard-val { font-size: 22px; }
+
+    /* pillar tiles 2-col on mobile */
+    .pillar-tiles { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* donut hidden on tiny screens, show just tiles */
+    .today-wrap { flex-direction: column; align-items: stretch; gap: 12px; }
+    .donut-container { display: none; }
+
+    /* day log rows stack */
+    .day-row { flex-wrap: wrap; gap: 6px; }
+    .day-info { min-width: 0; flex-basis: calc(100% - 80px); }
+    .pip-row  { display: none; }
+
+    /* deep work slot row stays 3-col */
+    .dw-slot-row { gap: 6px; }
+    .dw-slot { padding: 8px 4px; }
+
+    /* stat pills wrap */
+    .dw-stat-pills { gap: 4px; }
+    .dw-stat-pill  { font-size: 10px; padding: 4px 9px; }
+
+    /* modal full width */
+    .dw-modal { margin: 10px; width: calc(100% - 20px); max-width: none !important; }
+
+    /* week strip smaller */
+    .week-strip { gap: 4px; }
+    .wday-box   { font-size: 9px; }
+
+    /* heatmap cells smaller */
+    .hm-cell { width: 10px; height: 10px; }
+
+    /* kpi grid 1-col */
+    .kpi-grid { grid-template-columns: 1fr; }
+
+    /* charts height */
+    #xpBar, #statBar { height: 140px !important; }
+
+    /* pillar threshold grid */
+    #pillarThresholdGrid { grid-template-columns: 1fr 1fr !important; }
+
+    .scroll-y { max-height: none; }
+  }
+
+  /* ── Very small: ≤380px ── */
+  @media (max-width: 380px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+    .mcard-val { font-size: 20px; }
+    .player-name { font-size: 14px; }
+    .pill { font-size: 10px; padding: 3px 9px; }
+  }
+
 </style>
 </head>
 <body>
