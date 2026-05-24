@@ -1,1 +1,26 @@
-[]
+[
+    {
+        "type": "pillar",
+        "date": "2026-05-24",
+        "day": 1,
+        "name": "Push-ups",
+        "amount": 100,
+        "unit": "reps",
+        "stat": "Strength",
+        "xp": 300,
+        "time": "2026-05-24T14:41:34.484271",
+        "book": ""
+    },
+    {
+        "type": "pillar",
+        "date": "2026-05-24",
+        "day": 1,
+        "name": "Reading",
+        "amount": 50,
+        "unit": "pages",
+        "stat": "Intelligence",
+        "xp": 500,
+        "time": "2026-05-24T14:41:47.356438",
+        "book": ""
+    }
+]
